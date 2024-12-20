@@ -16,6 +16,8 @@ const Results = () => {
   const [searchResults, setSearchResults] = useState<Laptop[]>([]);
   const { filters } = useFilterContext();
   const [desc, setDesc] = useState("");
+  const [topRated, setTopRated] = useState<string[]>([]);
+  const [bestSeller, setBestSeller] = useState<string[]>([]);
 
   useEffect(() => {
     setSearchResults(
@@ -84,11 +86,38 @@ const Results = () => {
     }
   };
 
-  console.log(searchResults);
 
   const Navigate = useNavigate();
 
-  console.log(state.data);
+  useEffect(() => {
+    const TopRatedID = async () => {
+      try {
+        const res = await axios.get("http://localhost:3000/api/products/toprated");
+        const data = res.data;
+        setTopRated(data.map((item: Laptop) => item._id));
+      }
+      catch (err) {
+        console.log(err);
+      }
+    }
+    TopRatedID();
+    
+  },[])
+  useEffect(() => {
+    const BestSellers = async () => {
+      try {
+        const res = await axios.get("http://localhost:3000/api/products/bestseller");
+        const data = res.data;
+        setBestSeller(data.map((item: Laptop) => item._id));
+      }
+      catch (err) {
+        console.log(err);
+      }
+    }
+    BestSellers();
+    
+  },[])
+
 
   const handleClick = async (id: string, currentAddToCart: boolean) => {
     try {
@@ -148,7 +177,6 @@ const Results = () => {
             <option value="phtl">Price: High to Low</option>
             <option value="rhtl">Ratings: High to Low</option>
             <option value="rlth">Ratings: Low to High</option>
-            {/* <option value="nr">Newest Releases</option> */}
           </select>
         </div>
         <div className="pt-0 flex flex-col gap-8 ">
@@ -165,12 +193,12 @@ const Results = () => {
                       Individual(item._id);
                     }}
                   />
-                  {topbuysId.includes(item._id) &&
-                  !topRatingsId.includes(item._id) ? (
+                  {bestSeller.includes(item._id) &&
+                  !topRated.includes(item._id) ? (
                     <div className="absolute top-[0] left-0">
                       <BestsellerBadge />
                     </div>
-                  ) : topRatingsId.includes(item._id) ? (
+                  ) : topRated.includes(item._id) ? (
                     <div className="absolute top-[0] left-0">
                       <TopRatedBadge />
                     </div>

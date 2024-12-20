@@ -110,6 +110,43 @@ const updateByID = async (req, res) => {
   return res.status(200).json({ success: true, data: Prod });
 };
 
+const TopRatedProducts = async (req, res) => {
+  try {
+    const topRated = await Product.aggregate([
+      {
+        $addFields: {
+          ratingtoNum: { $toDouble: "$ratings" },
+        },
+      },
+      {
+        $sort: { ratingtoNum: -1 },
+      },
+      {
+        $limit: 5,
+      },
+    ]);
+    return res.status(200).json(topRated)
+  } catch (err) {
+    return res.status(400).json({ error: "Error fetching Top Rated data" })
+  }
+};
+const BestSeller = async (req, res) => {
+  try {
+    const bestSeller = await Product.aggregate([
+
+      {
+        $sort: { numberofbuys: -1 },
+      },
+      {
+        $limit: 5,
+      },
+    ]);
+    return res.status(200).json(bestSeller)
+  } catch (err) {
+    return res.status(400).json({ error: "Error fetching Top Rated data" })
+  }
+};
+
 const deleteByID = async (req, res) => {
   const id = req.params.id;
   let Prod;
@@ -175,6 +212,8 @@ const deleteAll = async (req, res) => {
 
 exports.getAllProducts = getAllProducts;
 exports.addProduct = addProduct;
+exports.BestSeller = BestSeller;
+exports.TopRatedProducts = TopRatedProducts;
 exports.getProductById = getProductById;
 exports.updateByID = updateByID;
 exports.deleteByID = deleteByID;
