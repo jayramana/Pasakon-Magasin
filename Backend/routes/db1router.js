@@ -1,6 +1,6 @@
 const routes = require('express').Router();
 
-const { getAllProducts,addProduct,getProductById,updateByID,deleteByID,addMultipleProducts,updateCart,deleteAll,TopRatedProducts,BestSeller } = require("../controller/controller.js");
+const { getAllProducts,addProduct,getProductById,updateByID,deleteByID,addMultipleProducts,updateCart,deleteAll,TopRatedProducts,BestSeller } = require("../controller/db1controller.js");
 
 
 routes.get("/", getAllProducts);

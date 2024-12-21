@@ -5,17 +5,17 @@ import { Laptop } from "../../types/types";
 import { useData } from "../../hooks/GlobalDataProvider";
 import { useNavigate } from "react-router-dom";
 
+
 const Home = () => {
   const [products, setProducts] = useState([]);
   const { searchValue } = useSearchContext();
   const { dispatch } = useData();
   const Navigate = useNavigate();
-  
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/products/");
+        const res = await axios.get(`${import.meta.env.VITE_API_PORT}api/products/`);
         setProducts(res.data.data);
       } catch {
         console.log("Error fetching data");
@@ -27,7 +27,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get<Laptop[]>("http://localhost:3000/api/products/")
+      .get<Laptop[]>(`${import.meta.env.VITE_API_PORT}api/products/`)
       .then((response) => {
         dispatch({ type: "SET_DATA", payload: response.data.data });
       })
@@ -35,6 +35,8 @@ const Home = () => {
         console.error("Error fetching data:", error);
       });
   }, [dispatch]);
+  console.log("API",import.meta.env.VITE_API_PORT)
+
 
   const gamingLaptops = products.filter(
     (product: Laptop) => product.category === "Gaming Laptop"
@@ -63,19 +65,17 @@ const Home = () => {
           {gamingLaptops.map((game: Laptop) => (
             <div
               key={game._id}
-              className="border-grey-300 border-solid border-2 transition-all duration-300 flex flex-col gap-0 w-80 p-4 hover:shadow-xl hover:cursor-pointer"
+              className="border-grey-300 border-solid border-2 transition-all duration-300 flex flex-col gap-0 w-80 p-4 hover:shadow-xl hover:cursor-pointer h-30 w-70"
               onClick={() => Navigate(`/ind/${game._id}`)}
-
             >
               <img
-                src="/laptop.jpeg"
+                src={`/${game.brand.toLowerCase()}.png`}
                 alt="laptop"
-                className="max-h-80 max-w-60 object-cover"
+                className="max-h-30 max-w-60 object-cover"
               />
               <p className="text-center ">
                 <span className="font-bold"> {game.name}</span>
               </p>
-              
             </div>
           ))}
         </div>
@@ -87,17 +87,16 @@ const Home = () => {
             <div
               key={game._id}
               className="p-4 border-grey-300 border-solid border-2 flex flex-col gap-4 hover:cursor-pointer"
-              onClick={()=> Navigate(`/ind/${game._id}`)}
+              onClick={() => Navigate(`/ind/${game._id}`)}
             >
               <img
-                src="/laptop.jpeg"
+                src={`/${game.brand.toLowerCase()}.png`}
                 alt="laptop"
                 className="max-h-80 max-w-60 object-cover"
               />
               <p className="text-center">
                 <span className="font-bold"> {game.name}</span>
               </p>
-              
             </div>
           ))}
         </div>
@@ -109,17 +108,16 @@ const Home = () => {
             <div
               key={game._id}
               className="p-4 border-grey-300 border-solid border-2 flex flex-col gap-4 hover:cursor-pointer"
-              onClick={()=> Navigate(`/ind/${game._id}`)}
+              onClick={() => Navigate(`/ind/${game._id}`)}
             >
               <img
-                src="/laptop.jpeg"
+                src={`/${game.brand.toLowerCase()}.png`}
                 alt="laptop"
                 className="max-h-80 max-w-60 object-cover"
               />
               <p className="text-center">
                 <span className="font-bold"> {game.name}</span>
               </p>
-             
             </div>
           ))}
         </div>
@@ -129,18 +127,17 @@ const Home = () => {
         <div className="flex overflow-x-auto whitespace-nowrap no-scrollbar gap-4">
           {costEfficient.map((game: Laptop) => (
             <div
-            key={game._id}
-            className="p-4 border-grey-300 border-solid border-2 flex flex-col gap-4"
-          >
-            <img
-              src="/laptop.jpeg"
-              alt="laptop"
-              className="max-h-80 max-w-60 object-cover"
-            />
-            <p className="text-center">
-              <span className="font-bold"> {game.name}</span>
-            </p>
-              
+              key={game._id}
+              className="p-4 border-grey-300 border-solid border-2 flex flex-col gap-4"
+            >
+              <img
+                src={`/${game.brand.toLowerCase()}.png`}
+                alt="laptop"
+                className="max-h-80 max-w-60 object-cover"
+              />
+              <p className="text-center">
+                <span className="font-bold"> {game.name}</span>
+              </p>
             </div>
           ))}
         </div>

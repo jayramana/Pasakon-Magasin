@@ -11,7 +11,7 @@ const Cart = () => {
 
   const handleClick = async (id: string, currentAddToCart: boolean) => {
     try {
-      const res = await axios.put(`http://localhost:3000/api/products/${id}`, {
+      const res = await axios.put(`${import.meta.env.VITE_API_PORT}api/products/${id}`, {
         addToCart: !currentAddToCart,
       });
 

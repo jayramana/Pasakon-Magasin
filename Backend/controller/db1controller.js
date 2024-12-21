@@ -1,5 +1,5 @@
 const { default: mongoose } = require("mongoose");
-const Product = require("../model/laptops");
+const Product = require("../model/dbmodel1/laptops");
 
 const getAllProducts = async (req, res) => {
   let Prod;

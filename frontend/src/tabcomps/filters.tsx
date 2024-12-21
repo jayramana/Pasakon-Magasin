@@ -16,7 +16,7 @@ const Filters = () => {
   useEffect(() => {
     const fetchAll = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/products/");
+        const res = await axios.get(`${import.meta.env.VITE_API_PORT}/api/products/`);
         setProducts(res.data.data);
       } catch {
         console.log("Error fetching data");

@@ -92,7 +92,7 @@ const Results = () => {
   useEffect(() => {
     const TopRatedID = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/products/toprated");
+        const res = await axios.get(`${import.meta.env.env.VITE_API_PORT}api/products/toprated`);
         const data = res.data;
         setTopRated(data.map((item: Laptop) => item._id));
       }
@@ -106,7 +106,7 @@ const Results = () => {
   useEffect(() => {
     const BestSellers = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/products/bestseller");
+        const res = await axios.get(`${import.meta.env.VITE_API_PORT}api/products/bestseller`);
         const data = res.data;
         setBestSeller(data.map((item: Laptop) => item._id));
       }
@@ -121,7 +121,7 @@ const Results = () => {
 
   const handleClick = async (id: string, currentAddToCart: boolean) => {
     try {
-      const res = await axios.put(`http://localhost:3000/api/products/${id}`, {
+      const res = await axios.put(`${import.meta.env.VITE_API_PORT}api/products/${id}`, {
         addToCart: !currentAddToCart,
       });
 
@@ -144,17 +144,6 @@ const Results = () => {
     Navigate(`/ind/${id}`);
   };
 
-  const TopBuys = [...searchResults].sort(
-    (a, b) => (b?.numberofbuys ?? 0) - (a?.numberofbuys ?? 0)
-  );
-  const topfbuys = TopBuys.slice(0, 3);
-  const topbuysId = topfbuys.map((item) => item._id);
-
-  const TopRatings = [...searchResults].sort(
-    (a, b) => Number(b?.ratings ?? 0) - Number(a?.ratings ?? 0)
-  );
-  const topRatings = TopRatings.slice(0, 3);
-  const topRatingsId = topRatings.map((item) => item._id);
 
   return (
     <div className="pt-20 flex">
@@ -183,11 +172,11 @@ const Results = () => {
           {searchResults.map((item: Laptop) => (
             <div className="py-10 border-b-2 border-b-gray-200" key={item._id}>
               <div key={item._id} className="flex hover:cursor-pointer gap-8 ">
-                <div className="relative inline-block">
+                <div className="relative inline-block h-30 w-70">
                   <img
-                    src="/laptop.jpeg"
+                    src={`/${item.brand.toLowerCase()}.png`}
                     alt=""
-                    className="h-40 w-60 object-cover transform translate-y-[3px] translate-x-[1px]"
+                    className="max-h-30 max-w-60 object-cover transform translate-y-[3px] translate-x-[1px]"
                     onClick={(e) => {
                       e.stopPropagation();
                       Individual(item._id);
