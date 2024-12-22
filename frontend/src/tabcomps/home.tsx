@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import axios from "axios";
 import { useSearchContext } from "../../hooks/SearchProvider";
 import { Laptop } from "../../types/types";
 import { useData } from "../../hooks/GlobalDataProvider";
+import { GoStarFill } from "react-icons/go";
 import { useNavigate } from "react-router-dom";
-
+import Homeskeleton from "../../comps/home/homeskeleton";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -12,10 +13,19 @@ const Home = () => {
   const { dispatch } = useData();
   const Navigate = useNavigate();
 
+  const formatToINR = (amount: number) => {
+    return new Intl.NumberFormat("en-IN", {
+      style: "currency",
+      currency: "INR",
+    }).format(amount);
+  };
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_PORT}api/products/`);
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_PORT}api/products/`
+        );
         setProducts(res.data.data);
       } catch {
         console.log("Error fetching data");
@@ -35,8 +45,7 @@ const Home = () => {
         console.error("Error fetching data:", error);
       });
   }, [dispatch]);
-  console.log("API",import.meta.env.VITE_API_PORT)
-
+  console.log("API", import.meta.env.VITE_API_PORT);
 
   const gamingLaptops = products.filter(
     (product: Laptop) => product.category === "Gaming Laptop"
@@ -56,26 +65,46 @@ const Home = () => {
     (prod: Laptop) => Number(prod.spec[0].price) < 60000
   );
   console.log(costEfficient);
-
+  if (products.length === 0) {
+    return <Homeskeleton />;
+  }
   return (
-    <div className="pt-20 h-screen w-screen flex flex-col gap-4 p-4">
+    <div className="pt-28 h-[100%] w-screen flex flex-col gap-4 p-4 bg-black text-white">
       <div className="flex flex-col gap-2">
         <p className="font-semibold">Best Gaming Laptops</p>
         <div className="flex overflow-x-scroll whitespace-nowrap scroll-smooth gap-4 no-scrollbar">
           {gamingLaptops.map((game: Laptop) => (
             <div
               key={game._id}
-              className="border-grey-300 border-solid border-2 transition-all duration-300 flex flex-col gap-0 w-80 p-4 hover:shadow-xl hover:cursor-pointer h-30 w-70"
+              className="transition-all duration-300 flex flex-col items-start gap-0 w-80 p-4 hover:shadow-xl hover:cursor-pointer  h-30 w-70"
               onClick={() => Navigate(`/ind/${game._id}`)}
             >
               <img
                 src={`/${game.brand.toLowerCase()}.png`}
                 alt="laptop"
-                className="max-h-30 max-w-60 object-cover"
+                className="max-h-30 max-w-60 object-cover transition-all duration-300 hover:scale-105"
               />
-              <p className="text-center ">
-                <span className="font-bold"> {game.name}</span>
-              </p>
+              <div className="flex flex-col">
+                <span className=""> {game.name}</span>
+                <div
+                  className={`flex items-center w-fit px-0.5 py-0.5 gap-0.5 rounded-sm ${
+                    Number(game.ratings) >= 4
+                      ? "bg-green-600"
+                      : Number(game.ratings) >= 3
+                      ? "bg-orange-600"
+                      : "bg-red-600"
+                  }`}
+                >
+                  <p className="text-white text-xs font-bold">{game.ratings}</p>
+                  <span>
+                    <GoStarFill className="text-xs text-white" />
+                  </span>
+                </div>
+                <span className="">
+                  {" "}
+                  {formatToINR(Number(game.spec[0].price))}
+                </span>
+              </div>
             </div>
           ))}
         </div>
@@ -86,17 +115,35 @@ const Home = () => {
           {topselling.map((game: Laptop) => (
             <div
               key={game._id}
-              className="p-4 border-grey-300 border-solid border-2 flex flex-col gap-4 hover:cursor-pointer"
+              className="transition-all duration-300 flex flex-col items-start gap-0 w-80 p-4 hover:shadow-xl hover:cursor-pointer  h-30 w-70"
               onClick={() => Navigate(`/ind/${game._id}`)}
             >
               <img
                 src={`/${game.brand.toLowerCase()}.png`}
                 alt="laptop"
-                className="max-h-80 max-w-60 object-cover"
+                className="max-h-30 max-w-60 object-cover transition-all duration-300 hover:scale-105"
               />
-              <p className="text-center">
-                <span className="font-bold"> {game.name}</span>
-              </p>
+              <div className="flex flex-col">
+                <span className=""> {game.name}</span>
+                <div
+                  className={`flex items-center w-fit px-0.5 py-0.5 gap-0.5 rounded-sm ${
+                    Number(game.ratings) >= 4
+                      ? "bg-green-600"
+                      : Number(game.ratings) >= 3
+                      ? "bg-orange-600"
+                      : "bg-red-600"
+                  }`}
+                >
+                  <p className="text-white text-xs font-bold">{game.ratings}</p>
+                  <span>
+                    <GoStarFill className="text-xs text-white" />
+                  </span>
+                </div>
+                <span className="">
+                  {" "}
+                  {formatToINR(Number(game.spec[0].price))}
+                </span>
+              </div>
             </div>
           ))}
         </div>
@@ -107,17 +154,35 @@ const Home = () => {
           {Worklaptops.map((game: Laptop) => (
             <div
               key={game._id}
-              className="p-4 border-grey-300 border-solid border-2 flex flex-col gap-4 hover:cursor-pointer"
+              className="transition-all duration-300 flex flex-col items-start gap-0 w-80 p-4 hover:shadow-xl hover:cursor-pointer  h-30 w-70"
               onClick={() => Navigate(`/ind/${game._id}`)}
             >
               <img
                 src={`/${game.brand.toLowerCase()}.png`}
                 alt="laptop"
-                className="max-h-80 max-w-60 object-cover"
+                className="max-h-30 max-w-60 object-cover transition-all duration-300 hover:scale-105"
               />
-              <p className="text-center">
-                <span className="font-bold"> {game.name}</span>
-              </p>
+              <div className="flex flex-col">
+                <span className=""> {game.name}</span>
+                <div
+                  className={`flex items-center w-fit px-0.5 py-0.5 gap-0.5 rounded-sm ${
+                    Number(game.ratings) >= 4
+                      ? "bg-green-600"
+                      : Number(game.ratings) >= 3
+                      ? "bg-orange-600"
+                      : "bg-red-600"
+                  }`}
+                >
+                  <p className="text-white text-xs font-bold">{game.ratings}</p>
+                  <span>
+                    <GoStarFill className="text-xs text-white" />
+                  </span>
+                </div>
+                <span className="">
+                  {" "}
+                  {formatToINR(Number(game.spec[0].price))}
+                </span>
+              </div>
             </div>
           ))}
         </div>
@@ -128,16 +193,35 @@ const Home = () => {
           {costEfficient.map((game: Laptop) => (
             <div
               key={game._id}
-              className="p-4 border-grey-300 border-solid border-2 flex flex-col gap-4"
+              className="transition-all duration-300 flex flex-col items-start gap-0 w-80 p-4 hover:shadow-xl hover:cursor-pointer  h-30 w-70"
+              onClick={() => Navigate(`/ind/${game._id}`)}
             >
               <img
                 src={`/${game.brand.toLowerCase()}.png`}
                 alt="laptop"
-                className="max-h-80 max-w-60 object-cover"
+                className="max-h-30 max-w-60 object-cover transition-all duration-300 hover:scale-105"
               />
-              <p className="text-center">
-                <span className="font-bold"> {game.name}</span>
-              </p>
+              <div className="flex flex-col">
+                <span className=""> {game.name}</span>
+                <div
+                  className={`flex items-center w-fit px-0.5 py-0.5 gap-0.5 rounded-sm ${
+                    Number(game.ratings) >= 4
+                      ? "bg-green-600"
+                      : Number(game.ratings) >= 3
+                      ? "bg-orange-600"
+                      : "bg-red-600"
+                  }`}
+                >
+                  <p className="text-white text-xs font-bold">{game.ratings}</p>
+                  <span>
+                    <GoStarFill className="text-xs text-white" />
+                  </span>
+                </div>
+                <span className="">
+                  {" "}
+                  {/* {formatToINR(Number(game.spec[0].price))} */}
+                </span>
+              </div>
             </div>
           ))}
         </div>

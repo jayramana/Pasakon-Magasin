@@ -10,6 +10,7 @@ import { GoStarFill } from "react-icons/go";
 import { formatToINR } from "./individual";
 import { BestsellerBadge } from "@/components/ui/bestseller";
 import { TopRatedBadge } from "@/components/ui/topRated";
+import { Button } from "@/components/ui/button";
 const Results = () => {
   const { searchValue } = useSearchContext();
   const { state, dispatch } = useData();
@@ -18,7 +19,7 @@ const Results = () => {
   const [desc, setDesc] = useState("");
   const [topRated, setTopRated] = useState<string[]>([]);
   const [bestSeller, setBestSeller] = useState<string[]>([]);
-
+  const placeholderItems = Array.from({ length: 100 }, (_, i) => i + 1);
   useEffect(() => {
     setSearchResults(
       state.data.filter(
@@ -86,44 +87,61 @@ const Results = () => {
     }
   };
 
-
   const Navigate = useNavigate();
 
   useEffect(() => {
     const TopRatedID = async () => {
       try {
-        const res = await axios.get(`${import.meta.env.env.VITE_API_PORT}api/products/toprated`);
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_PORT}api/products/toprated`
+        );
         const data = res.data;
         setTopRated(data.map((item: Laptop) => item._id));
-      }
-      catch (err) {
+      } catch (err) {
         console.log(err);
       }
-    }
+    };
     TopRatedID();
-    
-  },[])
+  }, []);
   useEffect(() => {
     const BestSellers = async () => {
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_PORT}api/products/bestseller`);
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_PORT}api/products/bestseller`
+        );
         const data = res.data;
         setBestSeller(data.map((item: Laptop) => item._id));
-      }
-      catch (err) {
+      } catch (err) {
         console.log(err);
       }
-    }
+    };
     BestSellers();
-    
-  },[])
+  }, []);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 15;
+
+  const totalPages = Math.ceil(searchResults.length / itemsPerPage);
+
+  const currentItems = searchResults.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  const handlePageChange = (page: number) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
 
   const handleClick = async (id: string, currentAddToCart: boolean) => {
     try {
-      const res = await axios.put(`${import.meta.env.VITE_API_PORT}api/products/${id}`, {
-        addToCart: !currentAddToCart,
-      });
+      const res = await axios.put(
+        `${import.meta.env.VITE_API_PORT}api/products/${id}`,
+        {
+          addToCart: !currentAddToCart,
+        }
+      );
 
       console.log(res.data);
 
@@ -143,14 +161,16 @@ const Results = () => {
     console.log(id);
     Navigate(`/ind/${id}`);
   };
+  console.log("tr", topRated);
 
+  
 
   return (
     <div className="pt-20 flex">
       <div className="w-1/16 pl-2">
         <Filters />
       </div>
-      <div className="pl-10 flex-grow   border-solid border-l-2 h-full border-y-0 ">
+      <div className="pl-10 flex-grow border-solid border-l-2 h-full border-y-0">
         <p className="font-semibold">
           Showing {searchResults.length} results for "<i>{searchValue}</i>"
         </p>
@@ -168,10 +188,10 @@ const Results = () => {
             <option value="rlth">Ratings: Low to High</option>
           </select>
         </div>
-        <div className="pt-0 flex flex-col gap-8 ">
-          {searchResults.map((item: Laptop) => (
+        <div className="pt-0 flex flex-col gap-8">
+          {currentItems.map((item: Laptop) => (
             <div className="py-10 border-b-2 border-b-gray-200" key={item._id}>
-              <div key={item._id} className="flex hover:cursor-pointer gap-8 ">
+              <div className="flex hover:cursor-pointer gap-8">
                 <div className="relative inline-block h-30 w-70">
                   <img
                     src={`/${item.brand.toLowerCase()}.png`}
@@ -255,6 +275,26 @@ const Results = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="flex justify-center items-center gap-4 pt-6">
+          <button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="px-4 py-2 bg-gray-700 text-white rounded disabled:opacity-50"
+          >
+            Previous
+          </button>
+          <span className="text-black">
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className="px-4 py-2 bg-gray-700 text-white rounded disabled:opacity-50"
+          >
+            Next
+          </button>
         </div>
       </div>
     </div>

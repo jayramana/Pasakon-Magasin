@@ -53,7 +53,6 @@ const Cart = () => {
 
             <div className="flex flex-col">
               <div className="flex justify-between gap-2">
-                {/* Name */}
                 <p className="whitespace-nowrap">{item.name}</p>
 
                 <p>{formatToINR(Number(item.spec[0].price))}</p>

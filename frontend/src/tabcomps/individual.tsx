@@ -4,6 +4,13 @@ import { useData } from "../../hooks/GlobalDataProvider";
 import axios from "axios";
 import { Laptop } from "types/types";
 import { GoStarFill } from "react-icons/go";
+import General from "../../comps/individual/general";
+import Pandm from "../../comps/individual/pandm";
+import Os from "../../comps/individual/os";
+import Daaf from "../../comps/individual/daaf";
+import Connectivity from "../../comps/individual/connectivity";
+import Battery from "../../comps/individual/battery";
+import Warranty from "../../comps/individual/warranty";
 
 export const formatToINR = (amount: number) => {
   return new Intl.NumberFormat("en-IN", {
@@ -29,9 +36,12 @@ const Individual = () => {
   const handleClick = async (id: string, addToCart: boolean) => {
     try {
       console.log(addToCart);
-      const res = await axios.put(`${import.meta.env.VITE_API_PORT}api/products/${id}`, {
-        addToCart: !addToCart,
-      });
+      const res = await axios.put(
+        `${import.meta.env.VITE_API_PORT}api/products/${id}`,
+        {
+          addToCart: !addToCart,
+        }
+      );
       console.log(res.data);
       if (product) {
         setProduct({ ...product, addToCart: !addToCart });
@@ -104,179 +114,50 @@ const Individual = () => {
             </div>
           </div>
           <p>Specifications</p>
-          <div>
-
-          </div>
+          <div></div>
           <div className="flex flex-col gap-4 ">
             <div className="flex flex-col gap-2  w-1/2 border-x-2">
-              <p className="text-2xl font-semibold bg-gray-100 border-y-2 p-2">General</p>
-              <div className="flex flex-col gap-2 pl-2 border-b-2 py-2 ">
-                <p className="text-sm">
-                  <span className="font-semibold">Name : </span>
-                  <span>{product.name}</span>
-                </p>
-                <p className="text-sm">
-                  <span className="font-semibold">Model : </span>
-                  <span>{product.model}</span>
-                </p>
-                <p className="text-sm">
-                  <span className="font-semibold">Brand : </span>
-                  <span>{product.brand}</span>
-                </p>
-                <p className="text-sm">
-                  <span className="font-semibold">Category : </span>
-                  <span>{product.category}</span>
-                </p>
-                <p className="text-sm">
-                  <span className="font-semibold">Weight : </span>
-                  <span>{product.spec?.[0].weight}</span>
-                </p>
-                <p className="text-sm">
-                  <span className="font-semibold">Color : </span>
-                  <span>{product.additionalDetails?.[0].color}</span>
-                </p>
-              </div>
+              <p className="text-2xl font-semibold bg-gray-100 border-y-2 p-2">
+                General
+              </p>
+              <General product={product} />
             </div>
             <div className="flex flex-col gap-2  w-1/2 border-x-2">
-              <p className="text-2xl font-semibold bg-gray-100 border-y-2 p-2">Processor And Memory Features</p>
-              <div className="flex flex-col gap-2 pl-2 border-b-2 py-2 ">
-                <p className="text-sm">
-                  <span className="font-semibold">Name : </span>
-                  <span>{product.processor?.[0]?.processorname}</span>
-                </p>
-                <p className="text-sm">
-                  <span className="font-semibold">SSD : </span>
-                  <span>
-                    {product.processor?.[0].ssd ? (
-                      <span>Yes</span>
-                    ) : (
-                      <span>No</span>
-                    )}
-                  </span>
-                </p>
-                <p className="text-sm">
-                  <span className="font-semibold">RAM : </span>
-                  <span>{product.processor?.[0].ram}</span>
-                </p>
-                <p className="text-sm">
-                  <span className="font-semibold">Type : </span>
-                  <span>{product.processor?.[0].ramtype}</span>
-                </p>
-                <p className="text-sm">
-                  <span className="font-semibold">Processor Variant : </span>
-                  <span>{product.processor?.[0].processorVariant}</span>
-                </p>
-                <p className="text-sm">
-                  <span className="font-semibold">Graphic Processor : </span>
-                  <span>{product.processor?.[0].graphicProcessor}</span>
-                </p>
-                <p className="text-sm">
-                  <span className="font-semibold">Number of Cores : </span>
-                  <span>{product.processor?.[0].numberOfCores}</span>
-                </p>
-                <p className="text-sm">
-                  <span className="font-semibold">Storage Type : </span>
-                  <span>{product.processor?.[0].storageType}</span>
-                </p>
-              </div>
+              <p className="text-2xl font-semibold bg-gray-100 border-y-2 p-2">
+                Processor And Memory Features
+              </p>
+              <Pandm product={product} />
             </div>
             <div className="flex flex-col gap-2  w-1/2 border-x-2">
-              <p className="text-2xl font-semibold bg-gray-100 border-y-2 p-2">Operating System</p>
-              <div className="flex flex-col gap-2 pl-2 border-b-2 py-2 ">
-                <p className="text-sm">
-                  <span className="font-semibold">OS : </span>
-                  <span>{product.os?.[0].os}</span>
-                </p>
-                <p>
-                  <span className="font-semibold">OS Architecture: </span>
-                  <span>{product.os?.[0].osarchitecture}</span>
-                </p>
-              </div>
+              <p className="text-2xl font-semibold bg-gray-100 border-y-2 p-2">
+                Operating System
+              </p>
+              <Os product={product} />
             </div>
 
             <div className="flex flex-col gap-2  w-1/2 border-x-2">
-              <p className="text-2xl font-semibold bg-gray-100 border-y-2 p-2">Display and Audio Features</p>
-              <div className="flex flex-col gap-2 pl-2 border-b-2 py-2 ">
-                <p className="text-sm">
-                  <span className="font-semibold">Screen Size : </span>
-                  <span>{product?.displayAudio?.[0]?.screenSize}</span>
-                </p>
-                <p className="text-sm">
-                  <span className="font-semibold">Screen Type : </span>
-                  <span>{product?.displayAudio?.[0]?.screenType}</span>
-                </p>
-                <p className="text-sm">
-                  <span className="font-semibold">Screen Resolution : </span>
-                  <span>{product?.displayAudio?.[0]?.screenResolution}</span>
-                </p>
-                <p className="text-sm">
-                  <span className="font-semibold">Touch Screen : </span>
-                  {product?.displayAudio?.[0]?.touchScreen ? (
-                    <span>Yes</span>
-                  ) : (
-                    <span>No</span>
-                  )}
-                </p>
-                <p className="text-sm">
-                  <span className="font-semibold">Internal Mic : </span>
-                  <span>{product?.displayAudio?.[0]?.internalMic}</span>
-                </p>
-                <p className="text-sm">
-                  <span className="font-semibold">Speakers : </span>
-                  <span>{product?.displayAudio?.[0]?.speakers}</span>
-                </p>
-              </div>
+              <p className="text-2xl font-semibold bg-gray-100 border-y-2 p-2">
+                Display and Audio Features
+              </p>
+              <Daaf product={product} />
             </div>
             <div className="flex flex-col gap-2  w-1/2 border-x-2">
-              <p className="text-2xl font-semibold bg-gray-100 border-y-2 p-2">Connectivity</p>
-              <div className="flex flex-col gap-2 pl-2 border-b-2 py-2 ">
-                <p className="text-sm">
-                  <span className="font-semibold">Wireless LAN : </span>
-                  <span>{product?.connectivity?.[0]?.wirelessLAN}</span>
-                </p>
-                <p className="text-sm">
-                  <span className="font-semibold">Bluetooth : </span>
-                  <span>{product?.connectivity?.[0]?.bluetooth}</span>
-                </p>
-              </div>
+              <p className="text-2xl font-semibold bg-gray-100 border-y-2 p-2">
+                Connectivity
+              </p>
+              <Connectivity product={product} />
             </div>
             <div className="flex flex-col gap-2  w-1/2 border-x-2">
-              <p className="text-2xl font-semibold bg-gray-100 border-y-2 p-2">Battery Details</p>
-              <div className="flex flex-col gap-2 pl-2 border-b-2 py-2 ">
-                <p className="text-sm">
-                  <span className="font-semibold">Battery Cell Type : </span>
-                  <span>{product?.battery?.[0]?.batterycelltype}</span>
-                </p>
-                <p className="text-sm">
-                  <span className="font-semibold">Number of Cells : </span>
-                  <span>{product?.battery?.[0]?.numberofcells}</span>
-                </p>
-                <p className="text-sm">
-                  <span className="font-semibold">Battery Energy Content : </span>
-                  <span>{product?.battery?.[0]?.batteryenergycontent}</span>
-                </p>
-              </div>
+              <p className="text-2xl font-semibold bg-gray-100 border-y-2 p-2">
+                Battery Details
+              </p>
+              <Battery product={product} />
             </div>
             <div className="flex flex-col gap-2  w-1/2 border-x-2">
-              <p className="text-2xl font-semibold bg-gray-100 border-y-2 p-2">Warranty</p>
-              <div className="flex flex-col gap-2 pl-2 border-b-2 py-2 ">
-                <p className="text-sm">
-                  <span className="font-semibold">Warranty Details : </span>
-                  <span>{product?.warranty?.[0]?.warrantyDetails}</span>
-                </p>
-                <p className="text-sm">
-                  <span className="font-semibold">Warranty Period : </span>
-                  <span>{product?.warranty?.[0]?.warrantyPeriod}</span>
-                </p>
-                <p className="text-sm">
-                  <span className="font-semibold">Warranty Type : </span>
-                  <span>{product?.warranty?.[0]?.warrantyType}</span>
-                </p>
-                <p className="text-sm">
-                  <span className="font-semibold">Warranty Summary : </span>
-                  <span>{product?.warranty?.[0]?.warrantySummary}</span>
-                </p>
-              </div>
+              <p className="text-2xl font-semibold bg-gray-100 border-y-2 p-2">
+                Warranty
+              </p>
+              <Warranty product={product} />
             </div>
           </div>
           <p></p>
