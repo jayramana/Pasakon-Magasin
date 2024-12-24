@@ -27,22 +27,22 @@ const Nav = () => {
     Navigate("/home");
   };
   return (
-    <div className="flex justify-between p-6 bg-black fixed w-[100%] z-[10] text-white ">
+    <div className="flex justify-between p-6 bg-black fixed w-[100%] z-[10] text-teal-400 ">
       <div onClick={homeRedirect} className="hover:cursor-pointer">
-        <p className="text-[#E50914] font-sans font-semibold text-lg">Pasakon-Magasin</p>
+        <p className="font-sans font-semibold text-lg">Pasakon-Magasin</p>
       </div>
       <div className="flex gap-2">
         <div className="flex flex-col">
           <div className="flex gap-2">
             <button onClick={() => { searchRedirect(); setSearchbtn(false) }}>
-              <IoIosSearch className="text-2xl text-white" />
+              <IoIosSearch className="text-2xl text-teal-400" />
             </button>
             <Input
               type="text"
               name=""
               id=""
               value={searchValue}
-              className="outline-none border-none text-white bg-gray-950  w-[400px]"
+              className="outline-none border-none text-teal-500 bg-gray-900  w-[400px]"
               onClick={()=>setSearchbtn(true)}
               placeholder="Search for Laptops"
               onChange={handleSearchChange}

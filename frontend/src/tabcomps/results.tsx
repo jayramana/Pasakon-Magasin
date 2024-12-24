@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { useSearchContext } from "../../hooks/SearchProvider";
 import axios from "axios";
 import Filters from "./filters";
@@ -10,7 +10,8 @@ import { GoStarFill } from "react-icons/go";
 import { formatToINR } from "./individual";
 import { BestsellerBadge } from "@/components/ui/bestseller";
 import { TopRatedBadge } from "@/components/ui/topRated";
-import { Button } from "@/components/ui/button";
+
+
 const Results = () => {
   const { searchValue } = useSearchContext();
   const { state, dispatch } = useData();
@@ -19,7 +20,6 @@ const Results = () => {
   const [desc, setDesc] = useState("");
   const [topRated, setTopRated] = useState<string[]>([]);
   const [bestSeller, setBestSeller] = useState<string[]>([]);
-  const placeholderItems = Array.from({ length: 100 }, (_, i) => i + 1);
   useEffect(() => {
     setSearchResults(
       state.data.filter(
@@ -166,11 +166,11 @@ const Results = () => {
   
 
   return (
-    <div className="pt-20 flex">
+    <div className="pt-20 flex bg-gray-950 text-teal-500">
       <div className="w-1/16 pl-2">
         <Filters />
       </div>
-      <div className="pl-10 flex-grow border-solid border-l-2 h-full border-y-0">
+      <div className="pl-10 pt-4 flex-grow border-solid border-l-2 h-full border-y-0">
         <p className="font-semibold">
           Showing {searchResults.length} results for "<i>{searchValue}</i>"
         </p>
@@ -180,6 +180,7 @@ const Results = () => {
             id=""
             onChange={(e) => setDesc(e.target.value)}
             onClick={SortFilter}
+            className="bg-gray-900  px-2 py-1 rounded-md focus:outline-none"
           >
             <option value="">Sort by</option>
             <option value="plth">Price: Low to High</option>
@@ -188,7 +189,7 @@ const Results = () => {
             <option value="rlth">Ratings: Low to High</option>
           </select>
         </div>
-        <div className="pt-0 flex flex-col gap-8">
+        <div className="pt-0 min-h-screen max-h-[100%] flex flex-col gap-8">
           {currentItems.map((item: Laptop) => (
             <div className="py-10 border-b-2 border-b-gray-200" key={item._id}>
               <div className="flex hover:cursor-pointer gap-8">
@@ -215,7 +216,7 @@ const Results = () => {
                 </div>
                 <div className="flex flex-col gap-2">
                   <div
-                    className="hover:text-gray-400"
+                    className="hover:text-teal-600"
                     onClick={(e) => {
                       e.stopPropagation();
                       Individual(item._id);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { Laptop } from "types/types";
 import { useFilterContext } from "../../hooks/FilterProvider";

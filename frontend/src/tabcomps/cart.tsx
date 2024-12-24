@@ -1,4 +1,3 @@
-import React from "react";
 import { useData } from "../../hooks/GlobalDataProvider";
 import { Laptop } from "types/types";
 import { formatToINR } from "./individual";
@@ -38,14 +37,14 @@ const Cart = () => {
   };
 
   return (
-    <main className="pt-20">
+    <main className="pt-20 bg-gray-900 text-teal-500 min-h-screen max-h-[100%]">
       <p>{cartData.length} items in Cart</p>
       <div className="grid grid-cols-5 gap-x-10 gap-y-5 px-4 ">
         {cartData.map((item: Laptop) => (
-          <div className="flex flex-col gap-4 border-solid border-2 border-gray-400 px-5 py-10" key={item._id}>
+          <div className="flex flex-col gap-4 border-solid border-2 border-white px-5 py-10" key={item._id}>
             <div>
               <img
-                src="/laptop.jpeg"
+                src={`/${item.brand.toLowerCase()}.png`}
                 alt="Laptop"
                 className="max-h-70 max-w-70 object-contain"
               />
