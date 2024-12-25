@@ -3,15 +3,7 @@ const {Schema} = mongoose;
 
 
 const specsSchema = new Schema({
-    graphics: {
-        type: String,
-        required: true
-    },
     weight: {
-        type: String,
-        required: true
-    },
-    storagespace: {
         type: String,
         required: true
     },

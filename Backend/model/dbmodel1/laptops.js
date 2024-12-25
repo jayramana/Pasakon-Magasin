@@ -68,10 +68,15 @@ const LaptopSchema = new Schema({
     type: String,
     required: true,
   },
+  seller: {
+    type: Number,
+    required : true
+  },
   quantity: {
     type: Number,
     required: true,
   },
+
 });
 
 module.exports = mongoose.model("Laptops", LaptopSchema);
