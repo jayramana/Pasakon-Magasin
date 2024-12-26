@@ -12,18 +12,21 @@ const OperatingSystemSchema = require("./extras/operatingsystem").schema;
 const warranty = require("./extras/warranty").schema;
 
 const LaptopSchema = new Schema({
-  name: { type: String, required: true },
+  name: {
+    type: String,
+    required: true,
+  },
   brand: { type: String, required: true },
   model: { type: String, required: true },
   addToCart: { type: Boolean, default: false },
   description: { type: String, required: true },
   release: { type: String, required: true },
-  ratings: { type: String, default: "0.0" }, // Ensure ratings remain a string
+  ratings: { type: String, default: "0.0" },
   numberOfRatings: { type: Number, default: 0 },
   numberofReviews: { type: Number, default: 0 },
-  category: { type: String, required: true }, // Category is required
+  category: { type: String, required: true },
   numberofbuys: { type: Number, default: 0 },
-  spec: specsSchema, // Match the JSON object structure
+  spec: specsSchema,
   additionalDetails: additionalDetailsSchema,
   battery: batterySchema,
   connectivity: ConnectivitySchema,
@@ -32,7 +35,7 @@ const LaptopSchema = new Schema({
   processor: ProcessorSchema,
   displayAudio: DisplayAudioSchema,
   imageURL: { type: String, required: true },
-  seller: { type: String, required: true }, // Match the JSON "seller" field as string
+  seller: { type: String, required: true },
   quantity: { type: Number, required: true },
 });
 
