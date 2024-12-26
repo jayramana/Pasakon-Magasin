@@ -4,20 +4,20 @@ import { Laptop } from '../../types/types'
 
 const Battery = ({product}:{product : Laptop}) => {
   return (
-    <div className="flex flex-col gap-2 pl-2 border-b-2 py-2 ">
-    <p className="text-sm">
-      <span className="font-semibold">Battery Cell Type : </span>
-      <span>{product?.battery?.[0]?.batterycelltype}</span>
+    <div className="flex flex-col gap-2 pl-2  py-2 ">
+    <p className="">
+      <span className="font-semibold text-lg text-teal-500">Battery Cell Type : </span>
+      <span className='text-white font-semibold'>{product?.battery?.batterycelltype}</span>
     </p>
-    <p className="text-sm">
-      <span className="font-semibold">Number of Cells : </span>
-      <span>{product?.battery?.[0]?.numberofcells}</span>
+    <p className="">
+      <span className="font-semibold text-lg text-teal-500">Number of Cells : </span>
+      <span className='text-white font-semibold'>{product?.battery?.numberofcells}</span>
     </p>
-    <p className="text-sm">
-      <span className="font-semibold">
+    <p className="">
+      <span className="font-semibold text-lg text-teal-500">
         Battery Energy Content :{" "}
       </span>
-      <span>{product?.battery?.[0]?.batteryenergycontent}</span>
+      <span className='text-white font-semibold'>{product?.battery?.batteryenergycontent}</span>
     </p>
   </div>
   )

@@ -16,7 +16,9 @@ const Filters = () => {
   useEffect(() => {
     const fetchAll = async () => {
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_PORT}api/products/`);
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_PORT}api/products/`
+        );
         setProducts(res.data.data);
       } catch {
         console.log("Error fetching data");
@@ -71,24 +73,24 @@ const Filters = () => {
     setCategoryIndex((prev) => (prev === index ? null : index));
   };
 
-  const Graphics = products.map((product: Laptop) => product.spec[0].graphics);
+  const Graphics = products.map(
+    (product: Laptop) => product.processor.graphicProcessor
+  );
   const Processor = products.map(
-    (product: Laptop) => product.processor?.[0]?.processorname
+    (product: Laptop) => product.processor?.processorname
   );
-  const Ram = products.map((product: Laptop) => product.processor?.[0]?.ram);
-  const Storage = products.map(
-    (product: Laptop) => product.spec[0].storagespace
-  );
-  const OS = products.map((product: Laptop) => product.os[0].os);
-  const RamType = products.map(
-    (product: Laptop) => product.processor[0].ramtype
-  );
+  const Ram = products.map((product: Laptop) => product.processor?.ram);
+  // const Storage = products.map(
+  //   (product: Laptop) => product.spec[0].storagespace
+  // );
+  const OS = products.map((product: Laptop) => product.os.os);
+  const RamType = products.map((product: Laptop) => product.processor.ramtype);
 
   const Category = products.map((product: Laptop) => product.category);
   const uniqueGraphics = Array.from(new Set(Graphics));
   const uniqueProcessor = Array.from(new Set(Processor));
   const uniqueRam = Array.from(new Set(Ram));
-  const uniqueStorage = Array.from(new Set(Storage));
+  // const uniqueStorage = Array.from(new Set(Storage));
   const uniqueOS = Array.from(new Set(OS));
   const uniqueRAMType = Array.from(new Set(RamType));
   const uniqueCategory = Array.from(new Set(Category));
@@ -96,7 +98,7 @@ const Filters = () => {
   console.log(filters);
 
   return (
-    <div className="flex flex-col gap-2 pr-2">
+    <div className="flex flex-col bg-gray-800 gap-2 pr-2 h-[100%]">
       <button
         onClick={resetFilter}
         className={
@@ -105,48 +107,47 @@ const Filters = () => {
           filters.processor ||
           filters.category ||
           filters.ram ||
-          filters.ramType ||
-          filters.storage
-            ? "inline-block w-fit"
+          filters.ramType
+            ? // filters.storage
+              "inline-block w-fit"
             : "hidden w-fit"
-          
         }
       >
         Clear All
       </button>
       <Accordion type="multiple" className="w-full">
-        <AccordionItem value="item-1">
+        <AccordionItem value="item-1" className="border-b-0">
           <div className="">
-            <AccordionTrigger>
-              <p className="font-bold text-lg">Graphics Card</p>
+            <AccordionTrigger className="hover:no-underline">
+              <p className="font-bold text-lg text-teal-500 ">Graphics Card</p>
             </AccordionTrigger>
             <AccordionContent>
-              <div>
+              <div className="text-white font-semibold text-lg">
                 {uniqueGraphics.map((graph, index) => (
                   <div key={index}>
                     <input
                       type="checkbox"
                       checked={GraphicIndex === index}
-                      value={graph}
+                      value={graph.toString()}
                       onChange={() => {
                         handleGraphicsChange(index);
                         handleChange("graphicsCard", graph);
                       }}
                     />
-                    <label htmlFor="">{graph}</label>
+                    <label htmlFor="">{graph.toString()}</label>
                   </div>
                 ))}
               </div>
             </AccordionContent>
           </div>
         </AccordionItem>
-        <AccordionItem value="item-2">
+        <AccordionItem value="item-2" className="border-b-0">
           <div className="">
-            <AccordionTrigger>
-              <p className="font-bold text-lg">Processors</p>
+            <AccordionTrigger className="hover:no-underline">
+              <p className="font-bold text-lg text-teal-500">Processors</p>
             </AccordionTrigger>
             <AccordionContent>
-              <div>
+              <div className="text-white font-semibold text-lg">
                 {uniqueProcessor.map((graph, index) => (
                   <div key={index}>
                     <input
@@ -167,13 +168,13 @@ const Filters = () => {
             </AccordionContent>
           </div>
         </AccordionItem>
-        <AccordionItem value="item-3">
+        <AccordionItem value="item-3" className="border-b-0">
           <div className="">
-            <AccordionTrigger>
-              <p className="font-bold text-lg">RAM</p>
+            <AccordionTrigger className="hover:no-underline">
+              <p className="font-bold text-lg text-teal-500">RAM</p>
             </AccordionTrigger>
             <AccordionContent>
-              <div>
+              <div className="text-white font-semibold text-lg">
                 {uniqueRam.map((graph, index) => (
                   <div key={index}>
                     <input
@@ -194,67 +195,43 @@ const Filters = () => {
             </AccordionContent>
           </div>
         </AccordionItem>
-        <AccordionItem value="item-4">
+
+        <AccordionItem value="item-5" className="border-b-0">
           <div className="">
-            <AccordionTrigger>
-              <p className="font-bold text-lg">Storage</p>
+            <AccordionTrigger className="hover:no-underline">
+              <p className="font-bold text-lg text-teal-500">
+                Operating System
+              </p>
             </AccordionTrigger>
             <AccordionContent>
-              <div>
-                {uniqueStorage.map((graph, index) => (
-                  <div key={index}>
-                    <input
-                      type="checkbox"
-                      checked={StorageIndex === index}
-                      value={graph}
-                      onChange={() => {
-                        handleStorageChange(index);
-                        handleChange("storage", graph);
-                      }}
-                      name=""
-                      id=""
-                    />
-                    <label htmlFor="">{graph}</label>
-                  </div>
-                ))}
-              </div>
-            </AccordionContent>
-          </div>
-        </AccordionItem>
-        <AccordionItem value="item-5">
-          <div className="">
-            <AccordionTrigger>
-              <p className="font-bold text-lg">Operating System</p>
-            </AccordionTrigger>
-            <AccordionContent>
-              <div>
+              <div className="text-white font-semibold text-lg">
                 {uniqueOS.map((graph, index) => (
                   <div key={index}>
                     <input
                       type="checkbox"
                       checked={OSIndex === index}
-                      value={graph}
+                      value={graph.toString()}
                       onChange={() => {
                         handleOSChange(index);
-                        handleChange("operatingSystem", graph);
+                        handleChange("operatingSystem", graph.toString());
                       }}
                       name=""
                       id=""
                     />
-                    <label htmlFor="">{graph}</label>
+                    <label htmlFor="">{graph.toString()}</label>
                   </div>
                 ))}
               </div>
             </AccordionContent>
           </div>
         </AccordionItem>
-        <AccordionItem value="item-6">
+        <AccordionItem value="item-6" className="border-b-0">
           <div className="">
-            <AccordionTrigger>
-              <p className="font-bold text-lg">RAM Type</p>
+            <AccordionTrigger className="hover:no-underline">
+              <p className="font-bold text-lg text-teal-500">RAM Type</p>
             </AccordionTrigger>
             <AccordionContent>
-              <div>
+              <div className="text-white font-semibold text-lg">
                 {uniqueRAMType.map((graph, index) => (
                   <div key={index}>
                     <input
@@ -275,13 +252,13 @@ const Filters = () => {
             </AccordionContent>
           </div>
         </AccordionItem>
-        <AccordionItem value="item-7">
+        <AccordionItem value="item-7" className="border-b-0">
           <div className="">
-            <AccordionTrigger>
-              <p className="font-bold text-lg">Category</p>
+            <AccordionTrigger className="hover:no-underline">
+              <p className="font-bold text-lg text-teal-500">Category</p>
             </AccordionTrigger>
             <AccordionContent>
-              <div>
+              <div className="tewhite font-semibold text-lg">
                 {uniqueCategory.map((graph, index) => (
                   <div key={index}>
                     <input

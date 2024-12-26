@@ -4,14 +4,14 @@ import { Laptop } from '../../types/types'
 
 const Os = ({product}:{product:Laptop}) => {
   return (
-    <div className="flex flex-col gap-2 pl-2 border-b-2 py-2 ">
-    <p className="text-sm">
-      <span className="font-semibold">OS : </span>
-      <span>{product.os?.[0].os}</span>
+    <div className="flex flex-col gap-2 pl-2  py-2 ">
+    <p className="">
+      <span className="font-semibold text-teal-500 text-lg">OS : </span>
+      <span className='text-white font-semibold'>{product.os?.os}</span>
     </p>
     <p>
-      <span className="font-semibold">OS Architecture: </span>
-      <span>{product.os?.[0].osarchitecture}</span>
+      <span className="font-semibold text-teal-500 text-lg">OS Architecture: </span>
+      <span className='text-white font-semibold'>{product.os?.osarchitecture}</span>
     </p>
   </div>
   )

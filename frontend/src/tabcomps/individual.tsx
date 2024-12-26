@@ -1,4 +1,4 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useData } from "../../hooks/GlobalDataProvider";
 import axios from "axios";
@@ -23,7 +23,7 @@ const Individual = () => {
   const { state } = useData();
   const [product, setProduct] = useState<Laptop | null>(null);
 
-  const price = Number(product?.spec?.[0]?.price);
+  const price = Number(product?.spec?.price);
   const newPrice = formatToINR(price);
 
   useEffect(() => {
@@ -58,11 +58,11 @@ const Individual = () => {
   }
 
   return (
-    <div className="pt-20">
-      <main className="flex gap-10" key={product._id}>
-        <div className="flex flex-col gap-4">
+    <div className="pt-20 bg-gray-900">
+      <main className="flex gap-40 pt-10" key={product._id}>
+        <div className="flex flex-col gap-4 pl-10">
           <div className="p-4 border-solid border-2 flex flex-col">
-            <img src="/laptop.jpeg" alt="" className="h-80" />
+            <img src="/laptop.jpeg" alt="" className="h-96 max-w-96 " />
           </div>
           <div className="flex justify-center gap-4">
             <button
@@ -83,78 +83,81 @@ const Individual = () => {
           </div>
         </div>
         <div>
-          <p>
-            {product.name} {product.model} {"("}
-            {product.processor?.[0]?.ram}/
-            {product.spec?.[0]?.storagespace +
-              " " +
-              product.processor?.[0]?.storageType}
-            /{product.displayAudio?.[0]?.screenSize}
-            {")"}
-          </p>
-          <div className="flex gap-2">
-            <div className="flex items-center bg-green-600 w-fit px-0.5 py-0.5 gap-0.5 rounded-sm">
-              <p className="text-white text-xs font-bold">{product.ratings}</p>
-              <span>
-                <GoStarFill className="text-xs text-white" />
-              </span>
-            </div>
+          <div className="flex flex-col gap-2">
             <div>
-              <p className="text-gray-400 font-semibold">
-                {product.numberOfRatings} Ratings & {product.numberofReviews}{" "}
-                Reviews
+              <p className="text-2xl font-semibold text-teal-300 hover:text-teal-500">
+                {product.name} {product.model} {"("}
+                {product.processor?.ram}/
+                { +
+                  " " +
+                  product.processor?.storageType}
+                /{product.displayAudio?.screenSize}
+                {")"}
               </p>
             </div>
-          </div>
-          <p>{newPrice}</p>
-          <div className="">
-            <div className="w-fit flex gap-4">
-              <p className="text-gray-500 font-semibold">Description</p>
-              <p className="">{product.description}</p>
+            <div className="flex gap-2">
+              <div className="flex items-center bg-green-600 w-fit px-0.5 py-0.5 gap-0.5 rounded-sm">
+                <p className="text-white text-xs font-bold">
+                  {product.ratings}
+                </p>
+                <span>
+                  <GoStarFill className="text-xs text-white" />
+                </span>
+              </div>
+              <div>
+                <p className="text-gray-400 font-semibold">
+                  {product.numberOfRatings} Ratings & {product.numberofReviews}{" "}
+                  Reviews
+                </p>
+              </div>
+            </div>
+            <p className="text-white text-lg font-semibold">{newPrice}</p>
+            <div className="">
+              <div className="w-fit flex gap-4 pb-10">
+                <p className="text-teal-500 font-semibold">Description</p>
+                <p className="w-1/2 text-white">{product.description}</p>
+              </div>
             </div>
           </div>
           <p>Specifications</p>
-          <div></div>
-          <div className="flex flex-col gap-4 ">
-            <div className="flex flex-col gap-2  w-1/2 border-x-2">
-              <p className="text-2xl font-semibold bg-gray-100 border-y-2 p-2">
-                General
-              </p>
+          <div className="flex flex-col gap-8 ">
+            <div className="flex flex-col gap-2  w-1/2 ">
+              <p className="text-2xl font-semibold bg-gray-800 text-teal-600  p-2">General</p>
               <General product={product} />
             </div>
-            <div className="flex flex-col gap-2  w-1/2 border-x-2">
-              <p className="text-2xl font-semibold bg-gray-100 border-y-2 p-2">
+            <div className="flex flex-col gap-2  w-1/2">
+              <p className="text-2xl font-semibold bg-gray-800  text-teal-600 p-2">
                 Processor And Memory Features
               </p>
               <Pandm product={product} />
             </div>
-            <div className="flex flex-col gap-2  w-1/2 border-x-2">
-              <p className="text-2xl font-semibold bg-gray-100 border-y-2 p-2">
+            <div className="flex flex-col gap-2  w-1/2">
+              <p className="text-2xl font-semibold bg-gray-800  text-teal-600 p-2">
                 Operating System
               </p>
               <Os product={product} />
             </div>
 
-            <div className="flex flex-col gap-2  w-1/2 border-x-2">
-              <p className="text-2xl font-semibold bg-gray-100 border-y-2 p-2">
+            <div className="flex flex-col gap-2  w-1/2 ">
+              <p className="text-2xl font-semibold bg-gray-800  text-teal-600 p-2">
                 Display and Audio Features
               </p>
               <Daaf product={product} />
             </div>
-            <div className="flex flex-col gap-2  w-1/2 border-x-2">
-              <p className="text-2xl font-semibold bg-gray-100 border-y-2 p-2">
+            <div className="flex flex-col gap-2  w-1/2 ">
+              <p className="text-2xl font-semibold bg-gray-800  text-teal-600 p-2">
                 Connectivity
               </p>
               <Connectivity product={product} />
             </div>
-            <div className="flex flex-col gap-2  w-1/2 border-x-2">
-              <p className="text-2xl font-semibold bg-gray-100 border-y-2 p-2">
+            <div className="flex flex-col gap-2  w-1/2 ">
+              <p className="text-2xl font-semibold bg-gray-800 text-teal-600  p-2">
                 Battery Details
               </p>
               <Battery product={product} />
             </div>
-            <div className="flex flex-col gap-2  w-1/2 border-x-2">
-              <p className="text-2xl font-semibold bg-gray-100 border-y-2 p-2">
+            <div className="flex flex-col gap-2  w-1/2 ">
+              <p className="text-2xl font-semibold bg-gray-800 text-teal-600  p-2">
                 Warranty
               </p>
               <Warranty product={product} />

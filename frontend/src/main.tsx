@@ -12,6 +12,7 @@ import FilterProvider from "../hooks/FilterProvider";
 import SearchProvider from "../hooks/SearchProvider";
 import Filters from "./tabcomps/filters";
 import Cart from "./tabcomps/cart";
+import AddProduct from "./tabcomps/addProduct";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -26,7 +27,9 @@ createRoot(document.getElementById("root")!).render(
               <Route path="/ind/:id" element={<Individual />} />
               <Route path="/res" element={<Results />} />
               <Route path="/filters" element={<Filters />} />
-              <Route path="cart" element={<Cart />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/add" element={<AddProduct/>} />
+
             </Routes>
           </Router>
         </FilterProvider>

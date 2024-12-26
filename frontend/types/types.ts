@@ -12,14 +12,14 @@ export interface Laptop {
     numberofReviews: number;
     category: string;
     numberofbuys?: number;
-    spec: Spec[];
-    additionalDetails: AdditionalDetail[];
-    battery: Battery[];
-    connectivity: Connectivity[];
-    os: OperatingSystem[];
-    warranty: Warranty[];
-    displayAudio: DisplayAudio[];
-    processor: Processor[];
+    spec: Spec;
+    additionalDetails: AdditionalDetail;
+    battery: Battery;
+    connectivity: Connectivity;
+    os: OperatingSystem;
+    warranty: Warranty;
+    displayAudio: DisplayAudio;
+    processor: Processor;
     imageURL: string;
     quantity: number;
   }

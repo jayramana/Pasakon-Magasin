@@ -25,22 +25,20 @@ const Results = () => {
       state.data.filter(
         (item: Laptop) =>
           item.name.toLowerCase().includes(searchValue.toLowerCase()) &&
-          item.processor?.[0]?.graphicProcessor
+          item.processor?.graphicProcessor
             .toLowerCase()
             .includes(filters.graphicsCard.toLowerCase()) &&
-          item.processor?.[0]?.processorname
+          item.processor?.processorname
             .toLowerCase()
             .includes(filters.processor.toLowerCase()) &&
-          item.processor?.[0]?.ram
+          item.processor?.ram
             .toLowerCase()
             .includes(filters.ram.toLowerCase()) &&
-          item.spec?.[0]?.storagespace
-            .toLowerCase()
-            .includes(filters.storage.toLowerCase()) &&
-          item.os?.[0]?.os
+           
+          item.os?.os
             .toLowerCase()
             .includes(filters.operatingSystem.toLowerCase()) &&
-          item.processor?.[0]?.ramtype
+          item.processor?.ramtype
             .toLowerCase()
             .includes(filters.ramType.toLowerCase()) &&
           item.category.toLowerCase().includes(filters.category.toLowerCase())
@@ -65,12 +63,12 @@ const Results = () => {
       if (desc) {
         if (desc === "plth") {
           sortedResults.sort(
-            (a, b) => Number(a.spec[0].price) - Number(b.spec[0].price)
+            (a, b) => Number(a.spec[0].price) - Number(b.spec.price)
           );
         }
         if (desc === "phtl") {
           sortedResults.sort(
-            (a, b) => Number(b.spec[0].price) - Number(a.spec[0].price)
+            (a, b) => Number(b.spec[0].price) - Number(a.spec.price)
           );
         }
         if (desc === "rhtl") {
@@ -166,11 +164,11 @@ const Results = () => {
   
 
   return (
-    <div className="pt-20 flex bg-gray-950 text-teal-500">
+    <div className="pt-20 flex bg-gray-900 text-white">
       <div className="w-1/16 pl-2">
         <Filters />
       </div>
-      <div className="pl-10 pt-4 flex-grow border-solid border-l-2 h-full border-y-0">
+      <div className="pl-10 pt-4 flex-grow  h-full ">
         <p className="font-semibold">
           Showing {searchResults.length} results for "<i>{searchValue}</i>"
         </p>
@@ -191,7 +189,7 @@ const Results = () => {
         </div>
         <div className="pt-0 min-h-screen max-h-[100%] flex flex-col gap-8">
           {currentItems.map((item: Laptop) => (
-            <div className="py-10 border-b-2 border-b-gray-200" key={item._id}>
+            <div className="py-10  " key={item._id}>
               <div className="flex hover:cursor-pointer gap-8">
                 <div className="relative inline-block h-30 w-70">
                   <img
@@ -222,16 +220,15 @@ const Results = () => {
                       Individual(item._id);
                     }}
                   >
-                    <span>{item.name + " " + item.model}</span>{" "}
-                    <span>Core {item.processor?.[0]?.processorname}</span>
-                    <span>
-                      {"(" + item.processor?.[0]?.ram}/
-                      {item.spec?.[0]?.storagespace +
-                        " " +
-                        item.processor?.[0]?.storageType}
+                    <span className="text-lg font-semibold">{item.name + " " + item.model}</span>{" "}
+                    <span className="text-lg font-semibold">Core {item.processor?.processorname}</span>
+                    <span className="text-lg font-semibold">
+                      {"(" + item.processor?.ram}/
+                      {" " +
+                        item.processor?.storageType}
                     </span>
-                    <span>
-                      /{item.displayAudio?.[0]?.screenSize}
+                    <span className="text-lg font-semibold">
+                      /{item.displayAudio?.screenSize}
                       {")"}
                     </span>
                   </div>
@@ -259,7 +256,7 @@ const Results = () => {
                       </p>
                     </div>
                   </div>
-                  <p>{formatToINR(Number(item.spec?.[0]?.price))}</p>
+                  <p>{formatToINR(Number(item.spec?.price))}</p>
                   <button
                     onClick={() => handleClick(item._id, item?.addToCart)}
                     className={`text-white px-2 py-1 rounded-md ${
