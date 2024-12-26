@@ -55,26 +55,6 @@ const ProcessorSchema = new Schema({
         type: String,
         required: true
     },
-    cpuscore: {
-        type: String,
-        required: true
-    },
-    gpuscore: {
-        type: String,
-        required: true
-    },
-    ramscore: {
-        type: String,
-        required: true
-    },
-    storagescore: {
-        type: String,
-        required: true
-    },
-    batteryscore: {
-        type: String,
-        required: true
-    }
 })
 
 module.exports = mongoose.model("Processor", ProcessorSchema);
