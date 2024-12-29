@@ -98,7 +98,7 @@ const Filters = () => {
   console.log(filters);
 
   return (
-    <div className="flex flex-col bg-gray-800 gap-2 pr-2 h-[100%]">
+    <div className="flex flex-col bg-slate-900 gap-2 pr-2 h-[100%]">
       <button
         onClick={resetFilter}
         className={

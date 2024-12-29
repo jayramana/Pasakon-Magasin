@@ -1,4 +1,4 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchContext } from "../../hooks/SearchProvider";
 import axios from "axios";
 import Filters from "./filters";
@@ -10,7 +10,6 @@ import { GoStarFill } from "react-icons/go";
 import { formatToINR } from "./individual";
 import { BestsellerBadge } from "@/components/ui/bestseller";
 import { TopRatedBadge } from "@/components/ui/topRated";
-
 
 const Results = () => {
   const { searchValue } = useSearchContext();
@@ -34,7 +33,6 @@ const Results = () => {
           item.processor?.ram
             .toLowerCase()
             .includes(filters.ram.toLowerCase()) &&
-           
           item.os?.os
             .toLowerCase()
             .includes(filters.operatingSystem.toLowerCase()) &&
@@ -63,12 +61,12 @@ const Results = () => {
       if (desc) {
         if (desc === "plth") {
           sortedResults.sort(
-            (a, b) => Number(a.spec[0].price) - Number(b.spec.price)
+            (a, b) => Number(a.spec.price) - Number(b.spec.price)
           );
         }
         if (desc === "phtl") {
           sortedResults.sort(
-            (a, b) => Number(b.spec[0].price) - Number(a.spec.price)
+            (a, b) => Number(b.spec.price) - Number(a.spec.price)
           );
         }
         if (desc === "rhtl") {
@@ -161,36 +159,36 @@ const Results = () => {
   };
   console.log("tr", topRated);
 
-  
-
   return (
-    <div className="pt-20 flex bg-gray-900 text-white">
+    <div className="pt-20 flex bg-slate-950 text-white">
       <div className="w-1/16 pl-2">
         <Filters />
       </div>
-      <div className="pl-10 pt-4 flex-grow  h-full ">
-        <p className="font-semibold">
-          Showing {searchResults.length} results for "<i>{searchValue}</i>"
-        </p>
-        <div>
-          <select
-            name=""
-            id=""
-            onChange={(e) => setDesc(e.target.value)}
-            onClick={SortFilter}
-            className="bg-gray-900  px-2 py-1 rounded-md focus:outline-none"
-          >
-            <option value="">Sort by</option>
-            <option value="plth">Price: Low to High</option>
-            <option value="phtl">Price: High to Low</option>
-            <option value="rhtl">Ratings: High to Low</option>
-            <option value="rlth">Ratings: Low to High</option>
-          </select>
+      <div className=" pl-10 pt-4 flex-grow  h-full ">
+        <div className="flex items-center justify-between pb-4">
+          <p className="font-semibold text-2xl">
+            Showing {searchResults.length} results for "<i>{searchValue}</i>"
+          </p>
+          <div>
+            <select
+              name=""
+              id=""
+              onChange={(e) => setDesc(e.target.value)}
+              onClick={SortFilter}
+              className="bg-gray-900  px-2 py-1 rounded-md focus:outline-none"
+            >
+              <option value="">Sort by</option>
+              <option value="plth">Price: Low to High</option>
+              <option value="phtl">Price: High to Low</option>
+              <option value="rhtl">Ratings: High to Low</option>
+              <option value="rlth">Ratings: Low to High</option>
+            </select>
+          </div>
         </div>
         <div className="pt-0 min-h-screen max-h-[100%] flex flex-col gap-8">
           {currentItems.map((item: Laptop) => (
             <div className="py-10  " key={item._id}>
-              <div className="flex hover:cursor-pointer gap-8">
+              <div className="flex hover:cursor-pointer gap-8 items-center bg-slate-900 w-[1150px] rounded-lg border-2 border-slate-800 py-10 px-8">
                 <div className="relative inline-block h-30 w-70">
                   <img
                     src={`/${item.brand.toLowerCase()}.png`}
@@ -213,6 +211,7 @@ const Results = () => {
                   ) : null}
                 </div>
                 <div className="flex flex-col gap-2">
+                  <p className="text-gray-300">{item.brand}</p>
                   <div
                     className="hover:text-teal-600"
                     onClick={(e) => {
@@ -220,35 +219,31 @@ const Results = () => {
                       Individual(item._id);
                     }}
                   >
-                    <span className="text-lg font-semibold">{item.name + " " + item.model}</span>{" "}
-                    <span className="text-lg font-semibold">Core {item.processor?.processorname}</span>
+                    <span className="text-lg font-semibold">
+                      {item.name + " " + item.model}
+                    </span>{" "}
+                    <span className="text-lg font-semibold">
+                      Core {item.processor?.processorname}
+                    </span>
                     <span className="text-lg font-semibold">
                       {"(" + item.processor?.ram}/
-                      {" " +
-                        item.processor?.storageType}
+                      {" " + item.processor?.storageType}
                     </span>
                     <span className="text-lg font-semibold">
                       /{item.displayAudio?.screenSize}
                       {")"}
                     </span>
                   </div>
-                  <p className="text-gray-300">{item.brand}</p>
-                  <div className="flex gap-2">
+                  <div className="flex items-center gap-2">
                     <div
-                      className={`flex items-center w-fit px-0.5 py-0.5 gap-0.5 rounded-sm ${
-                        Number(item.ratings) >= 4
-                          ? "bg-green-600"
-                          : Number(item.ratings) >= 3
-                          ? "bg-orange-600"
-                          : "bg-red-600"
-                      }`}
+                      className={`flex items-center w-fit px-0.5 py-0.5 gap-0.5 rounded-sm` }
                     >
-                      <p className="text-white text-xs font-bold">
+                      <span>
+                        <GoStarFill className="text-md text-teal-500 " />
+                      </span>
+                      <p className="text-white text-sm font-semibold">
                         {item.ratings}
                       </p>
-                      <span>
-                        <GoStarFill className="text-xs text-white" />
-                      </span>
                     </div>
                     <div>
                       <p className="text-sm text-gray-400 font-semibold">
@@ -256,7 +251,7 @@ const Results = () => {
                       </p>
                     </div>
                   </div>
-                  <p>{formatToINR(Number(item.spec?.price))}</p>
+                  <p className="font-bold text-lg text-teal-500">{formatToINR(Number(item.spec?.price))}</p>
                   <button
                     onClick={() => handleClick(item._id, item?.addToCart)}
                     className={`text-white px-2 py-1 rounded-md ${

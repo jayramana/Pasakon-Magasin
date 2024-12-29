@@ -25,15 +25,15 @@ const Home = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        setLoading(true); // Set loading to true before fetching
+        setLoading(true); 
         const res = await axios.get(
           `${import.meta.env.VITE_API_PORT}api/products/`
         );
         setProducts(res.data.data);
-        setLoading(false); // Set loading to false after data is fetched
+        setLoading(false); 
       } catch (error) {
         console.error("Error fetching data:", error);
-        setLoading(false); // Set loading to false on error
+        setLoading(false); 
       }
     };
 
@@ -66,12 +66,12 @@ const Home = () => {
   );
 
   const costEfficient = products.filter(
-    (prod: Laptop) => Number(prod.spec.price) < 60000
+    (prod: Laptop) => Number(prod.spec.price) < 50000
   );
 
   if (loading) {
     return (
-      <div className="pt-28 h-[100%] w-screen flex flex-col gap-4 p-4 bg-gray-900 text-teal-400 overflow-x-hidden">
+      <div className="pt-28 h-[100%] w-screen flex flex-col gap-4 p-4 bg-[#0B0F17] text-teal-400 overflow-x-hidden">
         {[
           "Best Gaming Laptops",
           "Top Selling Laptops",
@@ -99,24 +99,24 @@ const Home = () => {
     );
   }
   return (
-    <div className="pt-28 h-[100%] w-screen flex flex-col gap-4 p-4 bg-gray-900 overflow-x-hidden ">
+    <div className="pt-28 h-[100%] w-screen flex flex-col gap-4 p-4 bg-[#0B0F17] overflow-x-hidden ">
       <div className="flex flex-col gap-2">
         <p className="font-semibold text-teal-500 text-2xl">
           Best Gaming Laptops
         </p>
-        <div className="flex overflow-x-scroll whitespace-nowrap scroll-smooth gap-20 no-scrollbar">
-          {gamingLaptops.map((game: Laptop) => (
+        <div className="flex overflow-x-scroll whitespace-nowrap scroll-smooth gap-4 no-scrollbar">
+          {gamingLaptops.splice(0,4).map((game: Laptop) => (
             <div
               key={game._id}
-              className="transition-all duration-300 flex flex-col items-start gap-0 w-80 p-4 hover:shadow-xl hover:cursor-pointer  h-30 w-70"
+              className="transition-all bg-slate-900  border-2 border-solid border-slate-800  duration-300 flex flex-col justify-self-center gap-0   hover:shadow-xl hover:cursor-pointer"
               onClick={() => Navigate(`/ind/${game._id}`)}
             >
               <img
-                src={`/${game.brand.toLowerCase()}.png`}
+                src={`/laptop.jpeg`}
                 alt="laptop"
-                className="max-h-30 max-w-60 object-cover transition-all duration-300 hover:scale-105"
+                className="max-h-30 max-w-60 object-cover transition-all duration-300 hover:scale-105 rounded-lg"
               />
-              <div className="flex flex-col">
+              <div className="flex flex-col items-start">
                 <span className="text-[#2DD4BF] text-xl font-semibold mt-2">
                   {" "}
                   {game.name}
@@ -149,16 +149,16 @@ const Home = () => {
           Top Selling Laptops
         </p>
         <div className="flex overflow-x-auto whitespace-nowrap no-scrollbar gap-4">
-          {topselling.map((game: Laptop) => (
+          {topselling.slice(0,4).map((game: Laptop) => (
             <div
               key={game._id}
-              className="transition-all duration-300 flex flex-col items-start gap-0 w-80 p-4 hover:shadow-xl hover:cursor-pointer  h-30 w-70"
+              className="transition-all duration-300 flex flex-col bg-slate-900 border-slate-800 items-start gap-0 w-80  hover:shadow-xl hover:cursor-pointer  h-30 w-70"
               onClick={() => Navigate(`/ind/${game._id}`)}
             >
               <img
-                src={`/${game.brand.toLowerCase()}.png`}
+                src={`/laptop.jpeg`}
                 alt="laptop"
-                className="max-h-30 max-w-60 object-cover transition-all duration-300 hover:scale-105"
+                className="max-h-30 max-w-60 rounded-lg object-cover transition-all duration-300 hover:scale-105"
               />
               <div className="flex flex-col">
                 <span className="text-[#2DD4BF] text-xl font-semibold mt-2">
@@ -193,16 +193,16 @@ const Home = () => {
           Best Laptops for Work
         </p>
         <div className="flex overflow-x-auto whitespace-nowrap no-scrollbar gap-4">
-          {Worklaptops.map((game: Laptop) => (
+          {Worklaptops.slice(0,4).map((game: Laptop) => (
             <div
               key={game._id}
-              className="transition-all duration-300 flex flex-col items-start gap-0 w-80 p-4 hover:shadow-xl hover:cursor-pointer  h-30 w-70"
+              className="transition-all duration-300  bg-slate-900 border-slate-800flex flex-col items-start gap-0 w-80 p-4 hover:shadow-xl hover:cursor-pointer  h-30 w-70"
               onClick={() => Navigate(`/ind/${game._id}`)}
             >
               <img
-                src={`/${game.brand.toLowerCase()}.png`}
+                src={`/laptop.jpeg`}
                 alt="laptop"
-                className="max-h-30 max-w-60 object-cover transition-all duration-300 hover:scale-105"
+                className="max-h-30 max-w-60 rounded-lg object-cover transition-all duration-300 hover:scale-105"
               />
               <div className="flex flex-col">
                 <span className="text-[#2DD4BF] text-xl font-semibold mt-2">
@@ -237,16 +237,16 @@ const Home = () => {
           Laptops under 60,000
         </p>
         <div className="flex overflow-x-auto whitespace-nowrap no-scrollbar gap-4">
-          {costEfficient.map((game: Laptop) => (
+          {costEfficient.slice(0,4).map((game: Laptop) => (
             <div
               key={game._id}
-              className="transition-all duration-300 flex flex-col items-start gap-0 w-80 p-4 hover:shadow-xl hover:cursor-pointer  h-30 w-70"
+              className="transition-all duration-300 flex flex-col bg-slate-900 border-slate-800 items-start gap-0 w-80 p-4 hover:shadow-xl hover:cursor-pointer  h-30 w-70"
               onClick={() => Navigate(`/ind/${game._id}`)}
             >
               <img
-                src={`/${game.brand.toLowerCase()}.png`}
+                src={`/laptop.jpeg`}
                 alt="laptop"
-                className="max-h-30 max-w-60 object-cover transition-all duration-300 hover:scale-105"
+                className="max-h-30 max-w-60 rounded-lg object-cover transition-all duration-300 hover:scale-105"
               />
               <div className="flex flex-col">
                 <span className="text-[#2DD4BF] text-xl font-semibold mt-2">
@@ -267,6 +267,7 @@ const Home = () => {
                     <GoStarFill className="text-xs text-white" />
                   </span>
                 </div>
+                  <span className="text-white font-semibold">{formatToINR(Number(game.spec.price))}</span>
               </div>
             </div>
           ))}

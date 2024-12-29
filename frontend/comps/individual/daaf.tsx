@@ -19,7 +19,7 @@ const Daaf = ({product}:{product : Laptop}) => {
     </p>
     <p className="">
       <span className="font-semibold text-lg text-teal-500">Touch Screen : </span>
-      {product?.displayAudio?.[0]?.touchScreen ? (
+      {product?.displayAudio?.touchScreen ? (
         <span className='text-white font-semibold'>Yes</span>
       ) : (
         <span className='text-white font-semibold'>No</span>

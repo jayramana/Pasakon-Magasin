@@ -25,10 +25,12 @@ export interface Laptop {
   }
   
   export interface Spec {
-    graphics: string;
     weight: string;
-    storagespace: string;
     price: string;
+    gpuscore: string;
+    cpuscore: string;
+    storagescore: string;
+    ramscore: string;
   }
   
   export interface AdditionalDetail {

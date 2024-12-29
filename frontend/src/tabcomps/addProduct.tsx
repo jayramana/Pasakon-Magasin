@@ -1,7 +1,7 @@
 import React from "react";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
+import { Button } from "@/components/ui/button";
 const AddProduct = () => {
   return (
     <main className="bg-gray-900 text-teal-500 pt-20 min-h-screen max-h-[100%] overflow-x-hidden">
@@ -19,264 +19,376 @@ const AddProduct = () => {
               <TabsTrigger value="process">Processor</TabsTrigger>
             </TabsList>
 
-            <TabsContent value="general" className="focus:bg-transparent">
-              <p>General</p>
-              <div>
-                <label htmlFor="lapName">Laptop Name:</label>
-                <Input
-                  type="text"
-                  name=""
-                  id=""
-                  placeholder="Enter the Laptop Name"
-                />
+            <TabsContent
+              value="general"
+              className="focus:bg-transparent  pl-8 pt-4"
+            >
+              <p className="text-4xl font-semibold pb-4">General</p>
+              <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="lapName" className="font-semibold">
+                    Laptop Name:
+                  </label>
+                  <Input
+                    type="text"
+                    name=""
+                    id=""
+                    placeholder="Enter the Laptop Name"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="modelName" className="font-semibold">
+                    Laptop Model
+                  </label>
+                  <Input type="text" placeholder="Enter the Laptop's Model" />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="brand" className="font-semibold">
+                    Brand
+                  </label>
+                  <Input type="text" placeholder="Enter the Brand" />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="desc" className="font-semibold">
+                    Description
+                  </label>
+                  <Input type="text" placeholder="Enter the Description" />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="release" className="font-semibold">
+                    Release Date
+                  </label>
+                  <Input type="date" placeholder="Enter the Release Date" />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="cate " className="font-semibold">
+                    Category
+                  </label>
+                  <Input type="text" placeholder="Enter the Category" />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="img" className="font-semibold">
+                    Image
+                  </label>
+                  <Input type="file" placeholder="Enter the Image" />
+                </div>
               </div>
-              <div>
-                <label htmlFor="modelName">Laptop Model</label>
-                <Input type="text" placeholder="Enter the Laptop's Model" />
-              </div>
-              <div>
-                <label htmlFor="brand">Brand</label>
-                <Input type="text" placeholder="Enter the Brand" />
-              </div>
-              <div>
-                <label htmlFor="desc">Description</label>
-                <Input type="text" placeholder="Enter the Description" />
-              </div>
-              <div>
-                <label htmlFor="release">Release Date</label>
-                <Input type="date" placeholder="Enter the Release Date" />
-              </div>
-              <div>
-                <label htmlFor="cate">Category</label>
-                <Input type="text" placeholder="Enter the Category" />
-              </div>
-              <div>
-                <label htmlFor="img">Image</label>
-                <Input type="file" placeholder="Enter the Image" />
-              </div>
-            </TabsContent>
-
-            <TabsContent value="common">
-              <p>Common Details</p>
-              <div>
-                <label htmlFor="weight">Weight</label>
-                <Input
-                  type="text"
-                  placeholder="Enter the weight of the Laptop"
-                />
-              </div>
-              <div>
-                <label htmlFor="price">Price</label>
-                <Input
-                  type="number"
-                  placeholder="Enter the Price of the Laptop"
-                />
-              </div>
-            </TabsContent>
-
-            <TabsContent value="additional">
-              <p>Additional Details</p>
-              <div>
-                <label htmlFor="">Is there a Disk Drive in this laptop</label>
-                <Input type="text" placeholder="Type Yes or No" />
-              </div>
-              <div>
-                <label htmlFor="">Web Camera</label>
-                <Input type="text" placeholder="Enter the WebCAM details" />
-              </div>
-              <div>
-                <label htmlFor="">Keyboard</label>
-                <Input type="text" placeholder="Enter the Keyboard Details" />
-              </div>
-              <div>
-                <label htmlFor="">Pointer Device</label>
-                <Input
-                  type="text"
-                  placeholder="Enter the Pointer Device Details"
-                />
-              </div>
-              <div>
-                <label htmlFor="">Color</label>
-                <Input type="text" placeholder="Enter the Color" />
-              </div>
-              <div>
-                <label htmlFor="">Dimensions</label>
-                <Input type="text" placeholder="Enter the Processor" />
-              </div>
-              <div>
-                <label htmlFor="processor">Processor</label>
-                <Input type="text" placeholder="Enter the Processor" />
+              <div className="flex gap-2 pt-8 justify-between">
+                <Button className="bg-gray-800 text-teal-400 hover:bg-teal-600 hover:text-white">
+                  Save Changes
+                </Button>
+                <Button className="bg-gray-800 text-teal-400 hover:bg-teal-600 hover:text-white">
+                  Reset
+                </Button>
               </div>
             </TabsContent>
 
-            <TabsContent value="battery">
-              <p>Battery Details</p>
-              <div>
-                <label htmlFor="weight">Battery Cell Type</label>
-                <Input type="text" placeholder="Enter the Battery Cell Type" />
+            <TabsContent value="common" className="pl-8 pt-4">
+              <p className="text-4xl font-semibold pb-4">Common Details</p>
+              <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="weight" className="font-semibold">
+                    Weight
+                  </label>
+                  <Input
+                    type="text"
+                    placeholder="Enter the weight of the Laptop"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="price" className="font-semibold">
+                    Price
+                  </label>
+                  <Input
+                    type="number"
+                    placeholder="Enter the Price of the Laptop"
+                  />
+                </div>
               </div>
-              <div>
-                <label htmlFor="price">Battery Energy Content</label>
-                <Input
-                  type="number"
-                  placeholder="Enter the Battery Energy Content"
-                />
-              </div>
-              <div>
-                <label htmlFor="price">Number of Cells</label>
-                <Input type="number" placeholder="Enter the Number of Cells" />
-              </div>
-            </TabsContent>
-
-            <TabsContent value="connectivity">
-              <p>Connectivity Details</p>
-              <div>
-                <label htmlFor="weight">Wireless LAN</label>
-                <Input type="text" placeholder="Enter the Battery Cell Type" />
-              </div>
-              <div>
-                <label htmlFor="price">Bluetooth</label>
-                <Input
-                  type="number"
-                  placeholder="Enter the Battery Energy Content"
-                />
+              <div className="flex gap-2 pt-8 justify-between">
+                <Button className="bg-gray-800 text-teal-400 hover:bg-teal-600 hover:text-white">
+                  Save Changes
+                </Button>
+                <Button className="bg-gray-800 text-teal-400 hover:bg-teal-600 hover:text-white">
+                  Reset
+                </Button>
               </div>
             </TabsContent>
 
-            <TabsContent value="os">
-              <p>Operaing System</p>
-              <div>
-                <label htmlFor="weight">Architecture</label>
-                <Input
-                  type="text"
-                  placeholder="Enter the Architecture Details"
-                />
+            <TabsContent value="additional" className="pl-8 pt-4">
+              <p className="text-4xl font-semibold pb-4">Additional Details</p>
+              <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="">Is there a Disk Drive in this laptop</label>
+                  <Input type="text" placeholder="Type Yes or No" />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="">Web Camera</label>
+                  <Input type="text" placeholder="Enter the WebCAM details" />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="">Keyboard</label>
+                  <Input type="text" placeholder="Enter the Keyboard Details" />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="">Pointer Device</label>
+                  <Input
+                    type="text"
+                    placeholder="Enter the Pointer Device Details"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="">Color</label>
+                  <Input type="text" placeholder="Enter the Color" />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="">Dimensions</label>
+                  <Input type="text" placeholder="Enter the Processor" />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="processor">Processor</label>
+                  <Input type="text" placeholder="Enter the Processor" />
+                </div>
               </div>
-              <div>
-                <label htmlFor="price">Os</label>
-                <Input type="number" placeholder="Enter the OS Details" />
-              </div>
-              <div>
-                <label htmlFor="price">Supporting Os</label>
-                <Input
-                  type="number"
-                  placeholder="Enter the Supporting OS Details"
-                />
-              </div>
-            </TabsContent>
-
-            <TabsContent value="war">
-              <p>Warranty</p>
-              <div>
-                <label htmlFor="weight">Warranty Period</label>
-                <Input
-                  type="text"
-                  placeholder="Enter the Warranty Period Details"
-                />
-              </div>
-              <div>
-                <label htmlFor="price">Warranty Type</label>
-                <Input type="number" placeholder="Enter the Warranty Type" />
-              </div>
-              <div>
-                <label htmlFor="price">Warranty Summary </label>
-                <Input type="number" placeholder="Enter the Warranty Summary" />
-              </div>
-              <div>
-                <label htmlFor="price">Warranty Details</label>
-                <Input
-                  type="number"
-                  placeholder="Enter the Supporting Warranty Details"
-                />
+              <div className="flex gap-2 pt-8 justify-between">
+                <Button className="bg-gray-800 text-teal-400 hover:bg-teal-600 hover:text-white">
+                  Save Changes
+                </Button>
+                <Button className="bg-gray-800 text-teal-400 hover:bg-teal-600 hover:text-white">
+                  Reset
+                </Button>
               </div>
             </TabsContent>
 
-            <TabsContent value="process">
-              <p>Processor Details</p>
-              <div>
-                <label htmlFor="weight">Processor Brand</label>
-                <Input
-                  type="text"
-                  placeholder="Enter the Warranty Period Details"
-                />
+            <TabsContent value="battery" className="pl-8 pt-4">
+              <p className="text-4xl font-semibold pb-4">Battery Details</p>
+              <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="weight">Battery Cell Type</label>
+                  <Input
+                    type="text"
+                    placeholder="Enter the Battery Cell Type"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="price">Battery Energy Content</label>
+                  <Input
+                    type="number"
+                    placeholder="Enter the Battery Energy Content"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="price">Number of Cells</label>
+                  <Input
+                    type="number"
+                    placeholder="Enter the Number of Cells"
+                  />
+                </div>
               </div>
-              <div>
-                <label htmlFor="price">Processor Name</label>
-                <Input type="number" placeholder="Enter the Warranty Type" />
+              <div className="flex gap-2 pt-8 justify-between">
+                <Button className="bg-gray-800 text-teal-400 hover:bg-teal-600 hover:text-white">
+                  Save Changes
+                </Button>
+                <Button className="bg-gray-800 text-teal-400 hover:bg-teal-600 hover:text-white">
+                  Reset
+                </Button>
               </div>
-              <div>
-                <label htmlFor="price">Does it have an SSD</label>
-                <Input type="number" placeholder="Enter the Warranty Summary" />
+            </TabsContent>
+
+            <TabsContent value="connectivity" className="pl-8 pt-4">
+              <p className="text-4xl font-semibold pb-4">
+                Connectivity Details
+              </p>
+              <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="weight">Wireless LAN</label>
+                  <Input type="text" placeholder="Enter the WLAN Version" />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="price">Bluetooth</label>
+                  <Input
+                    type="number"
+                    placeholder="Enter the Bluetooth Version"
+                  />
+                </div>
               </div>
-              <div>
-                <label htmlFor="price">RAM</label>
-                <Input
-                  type="number"
-                  placeholder="Enter the Supporting Warranty Details"
-                />
+              <div className="flex gap-2 pt-8 justify-between">
+                <Button className="bg-gray-800 text-teal-400 hover:bg-teal-600 hover:text-white">
+                  Save Changes
+                </Button>
+                <Button className="bg-gray-800 text-teal-400 hover:bg-teal-600 hover:text-white">
+                  Reset
+                </Button>
               </div>
-              <div>
-                <label htmlFor="price">RAM Type</label>
-                <Input
-                  type="number"
-                  placeholder="Enter the Supporting Warranty Details"
-                />
+            </TabsContent>
+
+            <TabsContent value="os" className="pl-8 pt-4">
+              <p className="text-4xl font-semibold pb-4">Operaing System</p>
+              <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="weight">Architecture</label>
+                  <Input
+                    type="text"
+                    placeholder="Enter the Architecture Details"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="price">Os</label>
+                  <Input type="number" placeholder="Enter the OS Details" />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="price">Supporting Os</label>
+                  <Input
+                    type="number"
+                    placeholder="Enter the Supporting OS Details"
+                  />
+                </div>
               </div>
-              <div>
-                <label htmlFor="price">Emmcstoragecapacity</label>
-                <Input
-                  type="number"
-                  placeholder="Enter the Supporting Warranty Details"
-                />
+              <div className="flex gap-2 pt-8 justify-between">
+                <Button className="bg-gray-800 text-teal-400 hover:bg-teal-600 hover:text-white">
+                  Save Changes
+                </Button>
+                <Button className="bg-gray-800 text-teal-400 hover:bg-teal-600 hover:text-white">
+                  Reset
+                </Button>
               </div>
-              <div>
-                <label htmlFor="price">Processor Variant</label>
-                <Input
-                  type="number"
-                  placeholder="Enter the Supporting Warranty Details"
-                />
+            </TabsContent>
+
+            <TabsContent value="war" className="pl-8 pt-4">
+              <p className="text-4xl font-semibold pb-4">Warranty</p>
+              <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="weight">Warranty Period</label>
+                  <Input
+                    type="text"
+                    placeholder="Enter the Warranty Period Details"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="price">Warranty Type</label>
+                  <Input type="number" placeholder="Enter the Warranty Type" />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="price">Warranty Summary </label>
+                  <Input
+                    type="number"
+                    placeholder="Enter the Warranty Summary"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="price">Warranty Details</label>
+                  <Input
+                    type="number"
+                    placeholder="Enter the Supporting Warranty Details"
+                  />
+                </div>
               </div>
-              <div>
-                <label htmlFor="price">Clock Speed</label>
-                <Input
-                  type="number"
-                  placeholder="Enter the Supporting Warranty Details"
-                />
+              <div className="flex gap-2 pt-8 justify-between">
+                <Button className="bg-gray-800 text-teal-400 hover:bg-teal-600 hover:text-white">
+                  Save Changes
+                </Button>
+                <Button className="bg-gray-800 text-teal-400 hover:bg-teal-600 hover:text-white">
+                  Reset
+                </Button>
               </div>
-              <div>
-                <label htmlFor="price">Ram Frequency</label>
-                <Input
-                  type="number"
-                  placeholder="Enter the Supporting Warranty Details"
-                />
+            </TabsContent>
+
+            <TabsContent value="process" className="pl-8 pt-4">
+              <p className="text-4xl font-semibold pb-4">Processor Details</p>
+              <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="price">Processor Name</label>
+                  <Input type="number" placeholder="Enter the Name" />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="weight">Processor Brand</label>
+                  <Input type="text" placeholder="Enter the Brand Name" />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="price">Does it have an SSD</label>
+                  <Input
+                    type="number"
+                    placeholder="Enter the Warranty Summary"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="price">RAM</label>
+                  <Input
+                    type="number"
+                    placeholder="Enter the RAM Details"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="price">RAM Type</label>
+                  <Input
+                    type="number"
+                    placeholder="Enter the Type of RAM"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="price">Emmcstoragecapacity</label>
+                  <Input
+                    type="number"
+                    placeholder="Does it have Emmc Storage"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="price">Processor Variant</label>
+                  <Input
+                    type="number"
+                    placeholder="Enter the Variant"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="price">Clock Speed</label>
+                  <Input
+                    type="number"
+                    placeholder="Enter the Clock Speed"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="price">Ram Frequency</label>
+                  <Input
+                    type="number"
+                    placeholder="Enter the Frequency of RAM"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="price">Cache</label>
+                  <Input
+                    type="number"
+                    placeholder="Enter the Cache Details"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="price">Graphics Card</label>
+                  <Input
+                    type="number"
+                    placeholder="Enter the Name of the Graphics Card"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="price">Number of Cores</label>
+                  <Input
+                    type="number"
+                    placeholder="Enter the Number of Cores in the Processor"
+                  />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="price">Storage Type</label>
+                  <Input
+                    type="number"
+                    placeholder="Enter the Type of Storage"
+                  />
+                </div>
               </div>
-              <div>
-                <label htmlFor="price">Cache</label>
-                <Input
-                  type="number"
-                  placeholder="Enter the Supporting Warranty Details"
-                />
-              </div>
-              <div>
-                <label htmlFor="price">Graphics Card</label>
-                <Input
-                  type="number"
-                  placeholder="Enter the Supporting Warranty Details"
-                />
-              </div>
-              <div>
-                <label htmlFor="price">Number of Cores</label>
-                <Input
-                  type="number"
-                  placeholder="Enter the Supporting Warranty Details"
-                />
-              </div>
-              <div>
-                <label htmlFor="price">Storage Type</label>
-                <Input
-                  type="number"
-                  placeholder="Enter the Supporting Warranty Details"
-                />
+              <div className="flex gap-2 pt-8 justify-between">
+                <Button className="bg-gray-800 text-teal-400 hover:bg-teal-600 hover:text-white">
+                  Save Changes
+                </Button>
+                <Button className="bg-gray-800 text-teal-400 hover:bg-teal-600 hover:text-white">
+                  Reset
+                </Button>
               </div>
             </TabsContent>
           </Tabs>

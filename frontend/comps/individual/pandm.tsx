@@ -5,11 +5,11 @@ import { Laptop } from '../../types/types'
 const Pandm = ({product}:{product:Laptop}) => {
   return (
     <div className="flex flex-col gap-2 pl-2  py-2 ">
-    <p className="text-sm">
+    <p className="">
       <span className="font-semibold text-teal-500 text-lg">Name : </span>
       <span className="font-semibold text-white">{product.processor?.processorname}</span>
     </p>
-    <p className="text-sm">
+    <p className="">
       <span className="font-semibold text-teal-500 text-lg">SSD : </span>
       <span className="font-semibold text-white">
         {product.processor.ssd ? (

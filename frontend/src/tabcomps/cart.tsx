@@ -31,7 +31,7 @@ const Cart = () => {
   let sum = 0;
   const tot = () => {
     cartData.map((item: Laptop) => {
-      sum += Number(item.spec[0].price);
+      sum += Number(item.spec.price);
     });
     return sum;
   };
@@ -54,7 +54,7 @@ const Cart = () => {
               <div className="flex justify-between gap-2">
                 <p className="whitespace-nowrap">{item.name}</p>
 
-                <p>{formatToINR(Number(item.spec[0].price))}</p>
+                <p>{formatToINR(Number(item.spec.price))}</p>
               </div>
 
               <div>
