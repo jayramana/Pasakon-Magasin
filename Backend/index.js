@@ -11,6 +11,7 @@ app.use(express.json());
 app.use("/api/products", router1);
 app.use("/api/reviews", router2);
 
+const port = process.env.PORT || 3000;
 const connectDatabases = async () => {
   try {
     const db1Connection = await mongoose.connect(
@@ -31,7 +32,7 @@ const connectDatabases = async () => {
 };
 
 connectDatabases().then(() => {
-  app.listen(3000, () => {
+  app.listen(port, () => {
     console.log("Server is running on port 3000");
   });
 });
