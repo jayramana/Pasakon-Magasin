@@ -71,7 +71,7 @@ const Home = () => {
 
   if (loading) {
     return (
-      <div className="pt-28 h-[100%] w-screen flex flex-col gap-4 p-4 bg-[#0B0F17] text-teal-400 overflow-x-hidden">
+      <div className="pt-28 h-[100%] w-screen flex flex-col gap-4 p-4 bg-slate-950 text-teal-400 overflow-x-hidden">
         {[
           "Best Gaming Laptops",
           "Top Selling Laptops",
@@ -99,22 +99,22 @@ const Home = () => {
     );
   }
   return (
-    <div className="pt-28 h-[100%] w-screen flex flex-col gap-4 p-4 bg-[#0B0F17] overflow-x-hidden ">
+    <div className="pt-28 h-[100%] w-screen flex flex-col gap-4 px-4 py-2 bg-[#0B0F17] overflow-x-hidden ">
       <div className="flex flex-col gap-2">
         <p className="font-semibold text-teal-500 text-2xl">
           Best Gaming Laptops
         </p>
-        <div className="flex overflow-x-scroll whitespace-nowrap scroll-smooth gap-4 no-scrollbar">
+        <div className="flex overflow-x-scroll whitespace-nowrap scroll-smooth gap-12  no-scrollbar">
           {gamingLaptops.splice(0,4).map((game: Laptop) => (
             <div
               key={game._id}
-              className="transition-all bg-slate-900  border-2 border-solid border-slate-800  duration-300 flex flex-col justify-self-center gap-0   hover:shadow-xl hover:cursor-pointer"
+              className="transition-all bg-slate-900 p-8 border-2 border-solid border-slate-800 rounded-md  duration-300 flex flex-col justify-self-center   hover:shadow-xl hover:cursor-pointer"
               onClick={() => Navigate(`/ind/${game._id}`)}
             >
               <img
                 src={`/laptop.jpeg`}
                 alt="laptop"
-                className="max-h-30 max-w-60 object-cover transition-all duration-300 hover:scale-105 rounded-lg"
+                className="max-h-30 max-w-60 object-cover transition-all duration-300 hover:scale-105 rounded-sm"
               />
               <div className="flex flex-col items-start">
                 <span className="text-[#2DD4BF] text-xl font-semibold mt-2">
@@ -144,21 +144,21 @@ const Home = () => {
           ))}
         </div>
       </div>
-      <div className="flex flex-col gap-4 p-4">
+      <div className="flex flex-col gap-4">
         <p className="font-semibold text-teal-500 text-2xl">
           Top Selling Laptops
         </p>
-        <div className="flex overflow-x-auto whitespace-nowrap no-scrollbar gap-4">
+        <div className="flex overflow-x-scroll whitespace-nowrap scroll-smooth gap-12  no-scrollbar">
           {topselling.slice(0,4).map((game: Laptop) => (
             <div
               key={game._id}
-              className="transition-all duration-300 flex flex-col bg-slate-900 border-slate-800 items-start gap-0 w-80  hover:shadow-xl hover:cursor-pointer  h-30 w-70"
+              className="transition-all bg-slate-900 p-8 border-2 border-solid border-slate-800 rounded-md  duration-300 flex flex-col justify-self-center   hover:shadow-xl hover:cursor-pointer"
               onClick={() => Navigate(`/ind/${game._id}`)}
             >
               <img
                 src={`/laptop.jpeg`}
                 alt="laptop"
-                className="max-h-30 max-w-60 rounded-lg object-cover transition-all duration-300 hover:scale-105"
+                className="max-h-30 max-w-60 rounded-sm object-cover transition-all duration-300 hover:scale-105"
               />
               <div className="flex flex-col">
                 <span className="text-[#2DD4BF] text-xl font-semibold mt-2">
@@ -192,17 +192,17 @@ const Home = () => {
         <p className="font-semibold text-teal-500 text-2xl">
           Best Laptops for Work
         </p>
-        <div className="flex overflow-x-auto whitespace-nowrap no-scrollbar gap-4">
+        <div className="flex overflow-x-scroll whitespace-nowrap scroll-smooth gap-12  no-scrollbar">
           {Worklaptops.slice(0,4).map((game: Laptop) => (
             <div
               key={game._id}
-              className="transition-all duration-300  bg-slate-900 border-slate-800flex flex-col items-start gap-0 w-80 p-4 hover:shadow-xl hover:cursor-pointer  h-30 w-70"
+              className="transition-all bg-slate-900 p-8 border-2 border-solid border-slate-800 rounded-md  duration-300 flex flex-col justify-self-center   hover:shadow-xl hover:cursor-pointer"
               onClick={() => Navigate(`/ind/${game._id}`)}
             >
               <img
                 src={`/laptop.jpeg`}
                 alt="laptop"
-                className="max-h-30 max-w-60 rounded-lg object-cover transition-all duration-300 hover:scale-105"
+                className="max-h-30 max-w-60 rounded-sm object-cover transition-all duration-300 hover:scale-105"
               />
               <div className="flex flex-col">
                 <span className="text-[#2DD4BF] text-xl font-semibold mt-2">
@@ -236,17 +236,17 @@ const Home = () => {
         <p className="font-semibold text-teal-500 text-2xl">
           Laptops under 60,000
         </p>
-        <div className="flex overflow-x-auto whitespace-nowrap no-scrollbar gap-4">
+        <div className="flex overflow-x-scroll whitespace-nowrap scroll-smooth gap-12  no-scrollbar">
           {costEfficient.slice(0,4).map((game: Laptop) => (
             <div
               key={game._id}
-              className="transition-all duration-300 flex flex-col bg-slate-900 border-slate-800 items-start gap-0 w-80 p-4 hover:shadow-xl hover:cursor-pointer  h-30 w-70"
+              className="transition-all bg-slate-900 p-8 border-2 border-solid border-slate-800 rounded-md  duration-300 flex flex-col justify-self-center   hover:shadow-xl hover:cursor-pointer"
               onClick={() => Navigate(`/ind/${game._id}`)}
             >
               <img
                 src={`/laptop.jpeg`}
                 alt="laptop"
-                className="max-h-30 max-w-60 rounded-lg object-cover transition-all duration-300 hover:scale-105"
+                className="max-h-30 max-w-60 rounded-sm object-cover transition-all duration-300 hover:scale-105"
               />
               <div className="flex flex-col">
                 <span className="text-[#2DD4BF] text-xl font-semibold mt-2">

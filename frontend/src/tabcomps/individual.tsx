@@ -12,6 +12,7 @@ import Connectivity from "../../comps/individual/connectivity";
 import Battery from "../../comps/individual/battery";
 import Warranty from "../../comps/individual/warranty";
 import Specs from "../../comps/individual/specgraph";
+import { StarRating } from "@/components/ui/starRatings";
 
 export const formatToINR = (amount: number) => {
   return new Intl.NumberFormat("en-IN", {
@@ -77,13 +78,13 @@ const Individual = () => {
               </p>
             </div>
             <div className="flex gap-2">
-              <div className="flex items-center bg-green-600 w-fit px-0.5 py-0.5 gap-0.5 rounded-sm">
-                <p className="text-white text-xs font-bold">
+              <div className="flex items-center w-fit px-0.5 py-0.5 gap-0.5">
+                <span>
+                  <StarRating rating={Number(product.ratings)} />
+                </span>
+                <p className="text-white  font-bold">
                   {product.ratings}
                 </p>
-                <span>
-                  <GoStarFill className="text-xs text-white" />
-                </span>
               </div>
               <div>
                 <p className="text-gray-400 font-semibold">
@@ -94,7 +95,7 @@ const Individual = () => {
             </div>
             <p className="text-3xl font-semibold text-teal-300">{newPrice}</p>
 
-            <div className="grid grid-rows-2  justify-center pb-10c h-fit gap-x-4">
+            <div className="grid justify-center pb-10 h-fit gap-x-4">
               <div className="h-fit">
                 <p className="w-1/2 text-slate-400">{product.description}</p>
               </div>
@@ -121,7 +122,7 @@ const Individual = () => {
               </button>
             </div>
           </div>
-          
+
           <div className="flex flex-col gap-8 mt-4 ">
             <div className="flex flex-col gap-2  w-1/2 ">
               <p className="text-2xl font-semibold bg-gray-800 text-teal-600  p-2">
@@ -160,7 +161,7 @@ const Individual = () => {
               </p>
               <Battery product={product} />
             </div>
-            <div className="flex flex-col gap-2  w-1/2 ">
+            <div className="flex flex-col gap-2 pb-4 w-1/2 ">
               <p className="text-2xl font-semibold bg-gray-800 text-teal-600  p-2">
                 Warranty
               </p>
@@ -168,15 +169,15 @@ const Individual = () => {
             </div>
           </div>
           <div>
-            <p className="text-2xl font-semibold bg-gray-800 text-teal-600  p-2">
-              Performance Score :{" "}
-              <span>
-                {Number(product.spec.gpuscore) * 0.35 +
+            <p className="">
+              <span className="text-teal-500">Performance Score</span> :{" "}
+              <span className="text-white">
+                {Number(product.spec.gpuscore) * 0.3 +
                   Number(product.spec.cpuscore) * 0.3 +
                   (Number(product.spec.ramscore) > 0
-                    ? Number(product.spec.ramscore) * 0.2
-                    : Number(product.spec.ramscore) + 1 * 0.2) +
-                  Number(product.spec.storagescore) * 15}
+                    ? Number(product.spec.ramscore) * 0.25
+                    : Number(product.spec.ramscore) + 1 * 0.25) +
+                  Number(product.spec.storagescore) * 0.15}
               </span>
             </p>
             <Specs product={product.spec} />

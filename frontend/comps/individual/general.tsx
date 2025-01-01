@@ -28,7 +28,11 @@ const General = ({ product }: { product: Laptop }) => {
     <p className="">
       <span className="font-semibold text-teal-500 text-lg">Color : </span>
       <span className="font-semibold text-white">{product?.additionalDetails?.color ?? 'N/A'}</span>
-    </p>
+      </p>
+      <p>
+        <span className="font-semibold text-teal-500 text-lg">Released On : </span>
+        <span className="font-semibold text-white">{product?.release ?? 'N/A'}</span>
+      </p>
   </div>
   )
 }

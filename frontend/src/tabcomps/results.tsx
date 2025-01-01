@@ -165,7 +165,7 @@ const Results = () => {
         <Filters />
       </div>
       <div className=" pl-10 pt-4 flex-grow  h-full ">
-        <div className="flex items-center justify-between pb-4">
+        <div className="flex items-center justify-between pb-4 pr-8">
           <p className="font-semibold text-2xl">
             Showing {searchResults.length} results for "<i>{searchValue}</i>"
           </p>
