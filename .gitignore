@@ -1,4 +1,12 @@
 .vscode
+
+Backend/details/node_modules
 Backend/node_modules
+Backend/details/.env
 Backend/.env
+Backend/login/node_modules
+./laptop_dataset_updated_with_scores
 Backend/updated_laptop_dataset_corrected.json
+Backend/laptop_dataset_updated_with_computed_scores.json
+Backend/laptop_dataset_updated_with_scores.json
+Backend/Laptop_dataset_updated_scaled_ratings.json
