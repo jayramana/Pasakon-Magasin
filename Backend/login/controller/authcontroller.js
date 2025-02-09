@@ -11,7 +11,7 @@ const register = async (req, res) => {
 
     const newUser = new Auth({ name, password: hashedPass, email, role });
     await newUser.save();
-    res.status(201).json({ message: `User logged in with UserName : ${name}` });
+    res.status(201).json({ message: `User registered in with UserName : ${name}` });
   } catch (err) {
     res.status(500).json({ message: err });
   }
