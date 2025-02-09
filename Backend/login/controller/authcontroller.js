@@ -11,7 +11,9 @@ const register = async (req, res) => {
 
     const newUser = new Auth({ name, password: hashedPass, email, role });
     await newUser.save();
-    res.status(201).json({ message: `User registered in with UserName : ${name}` });
+    res
+      .status(201)
+      .json({ message: `User registered in with UserName : ${name}` });
   } catch (err) {
     res.status(500).json({ message: err });
   }
@@ -35,10 +37,15 @@ const login = async (req, res) => {
       { expiresIn: "1h" }
     );
 
-    res.status(200).json({ token });
+    res
+      .status(200)
+      .json({
+        token,
+        user: { name: User.name, email: User.email, role: User.role },
+      });
   } catch (err) {
-      res.status(500).json({ message: err });
-      console.log(err)
+    res.status(500).json({ message: err });
+    console.log(err);
   }
 };
 

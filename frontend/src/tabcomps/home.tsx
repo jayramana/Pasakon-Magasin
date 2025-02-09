@@ -51,7 +51,6 @@ const Home = () => {
       });
   }, [dispatch]);
 
-  console.log("API", import.meta.env.VITE_API_PORT);
 
   const gamingLaptops = products.filter(
     (product: Laptop) => product.category === "Gaming Laptop"

@@ -44,7 +44,7 @@ const Nav = () => {
     Navigate("/home");
   };
   return (
-    <div className="flex justify-between p-6 bg-black fixed w-[100%] z-[10] text-teal-400 ">
+    <div className="flex justify-between p-6 bg-gray-300 fixed w-[100%] z-[10]">
       <div onClick={homeRedirect} className="hover:cursor-pointer">
         <p className="font-sans font-semibold text-lg">Pasakon-Magasin</p>
       </div>
@@ -64,14 +64,14 @@ const Nav = () => {
               name=""
               id=""
               value={searchValue}
-              className="outline-none border-none text-teal-500 bg-gray-900  w-[400px]"
+              className="outline-none border-none  w-[400px]"
               onClick={() => setSearchbtn(true)}
               placeholder="Search for Laptops"
               onChange={handleSearchChange}
             />
           </div>
           <div
-            className={`absolute right-45 translate-x-8 top-[58px] bg-gray-800  h-fit w-[400px] overflow-y-scroll no-scrollbar flex flex-col gap-4 ${
+            className={`absolute right-45 translate-x-8 top-[58px] h-fit w-[400px] overflow-y-scroll no-scrollbar flex flex-col gap-4 ${
               searchbtn ? "block" : "hidden"
             }`}
           >
@@ -123,7 +123,11 @@ const Nav = () => {
           <p>Cart</p>
         </div>
 
-        <p>Sign-in/Login</p>
+        <div className="flex gap-2 items-center transform translate-y-[-6.5px]">
+          <button><p>Log-In</p></button>
+          Or
+          <button><p>Register</p></button>
+        </div>
       </div>
     </div>
   );
